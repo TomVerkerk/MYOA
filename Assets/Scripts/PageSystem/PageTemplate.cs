@@ -5,18 +5,21 @@ using System.Collections.Generic;
 public class PageTemplate : MonoBehaviour {
 
 	public List<GameObject> Objects;
-	private ElementVariables variables;
+	private ItemVariables variables;
 
 	public void OpenPage(){
 		foreach (GameObject element in Objects) {
-			variables = element.gameObject.GetComponent<ElementVariables>();
+			variables = element.gameObject.GetComponent<ItemVariables>();
+			element.transform.localScale = variables.scale;
 			Instantiate(element,variables.position,transform.rotation);
 		}
 	}
-	
+
 	public void ClosePage(){
 		foreach (GameObject element in Objects) {
-			Destroy(element.gameObject);
+			if(element!=null){
+				Destroy(element.gameObject);
+			}
 		}
 	}
 }

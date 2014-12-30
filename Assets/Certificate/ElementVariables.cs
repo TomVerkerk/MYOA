@@ -4,7 +4,6 @@ using System.Collections;
 public class ElementVariables : MonoBehaviour {
 
 	public Vector3 position;
-	public bool enabled;
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +12,5 @@ public class ElementVariables : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (Screen.width + "/" + Screen.height);
 	}
 }

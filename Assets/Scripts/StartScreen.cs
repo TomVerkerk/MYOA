@@ -15,7 +15,7 @@ public class StartScreen : MonoBehaviour {
 
 	void PlaceLogo(){
 		logo.GetComponent<Zoom>().stopSize = stopSize;
-		logo.transform.localScale = new Vector3 (startSize, startSize, startSize);
+		logo.transform.localScale = new Vector3 (startSize*2, startSize, startSize);
 		Instantiate (logo, startPos, transform.rotation);
 	}
 }

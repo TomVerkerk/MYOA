@@ -8,19 +8,15 @@ public class Pages : MonoBehaviour {
 
 	// Use this for initialization
 	void Start(){
-	//	openPage (0);
+		openPage (0);
 	}
-
-	void addPage(){
-
-		}
 
 	public void openPage (int pageNumber) {
 		PageArray [pageNumber].OpenPage ();
 	}
 	
 	// Update is called once per frame
-	void closePage () {
-	
+	public void closePage (int pageNumber) {
+		PageArray [pageNumber].ClosePage ();
 	}
 }
