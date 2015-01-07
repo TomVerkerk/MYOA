@@ -9,16 +9,22 @@ public class ItemVariables : MonoBehaviour {
 	public bool backEnabled;
 	public bool text;
 	public bool button;
+	public bool image;
+	public bool site;
+	public bool exit;
 //	public bool image;
-	public string TextField;
-	public GUIStyle style;
+//	public string TextField;
+//	public GUIStyle style;
 //	public Texture imageTexture;
 //	public GUIStyle stylo;
+	public Material imageMaterial;
 	public float left;
 	public float top;
 	public float width;
 	public float height;
 	public int buttonGoesToPage;
+	public int backGoesToPage;
+	public string siteURL;
 	private Pages pages;
 	private Vector2 screenRes;
 	private GameObject[] Buttons;
@@ -26,28 +32,42 @@ public class ItemVariables : MonoBehaviour {
 	void Start(){
 		screenRes.x = Screen.width;
 		screenRes.y = Screen.height;
+		pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
+		if (image) {
+			transform.localScale = new Vector3(width,height,1);
+			gameObject.renderer.material = imageMaterial;
+		}
 	}
 
 	void OnGUI(){
+		//GUI.color = Color.clear;
 		if (button) {
-			if(GUI.Button (new Rect (screenRes.x*left, screenRes.y*top, screenRes.x*width, screenRes.y*height), TextField)) {
+			if(GUI.Button (new Rect (screenRes.x*left, screenRes.y*top, screenRes.x*width, screenRes.y*height),"fgt") ){
 				Buttons = GameObject.FindGameObjectsWithTag("Button");
+				if(site){
+				//Application.OpenURL(siteURL);
+				}
+				else if(exit){
+					Application.Quit();
+				}
+				else{
+					pages.openPage (buttonGoesToPage);
+				}
 				foreach(GameObject buttonObject in Buttons){
 					if(buttonObject!=null){
 						Destroy(buttonObject);
+						//GUI.enabled = false;
 					}
 				}
-				pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
-				pages.openPage (buttonGoesToPage);
 				button= false;
 			}
+		}
 		/*	if(image){
 				GUI.DrawTexture(new Rect (screenRes.x*left, screenRes.y*top, screenRes.x*width, screenRes.y*height),imageTexture);
 			}*/
-		}
-		if (text) {
-			GUI.TextField(new Rect (screenRes.x*left, screenRes.y*top, screenRes.x*width, screenRes.y*height),TextField,style);
-		}
+//		if (text) {
+//			GUI.TextField(new Rect (screenRes.x*left, screenRes.y*top, screenRes.x*width, screenRes.y*height),TextField/*,style*/);
+//		}
 	}
 
 	void Update(){
@@ -59,9 +79,8 @@ public class ItemVariables : MonoBehaviour {
 						Destroy(buttonObject);
 					}
 				}
-				pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
-				pages.openPage (buttonGoesToPage);
-				pages.closePage(currentPage);
+				pages.openPage (backGoesToPage);
+				//pages.closePage(currentPage);
 			//	button=false;
 			}
 		}
