@@ -1,10 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PageSystem\ItemVariables.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PageSystem\PageTemplate.cs">
     <Files>
-      <File FileName="Assets\Scripts\PageSystem\ItemVariables.cs" Line="66" Column="1" />
+      <File FileName="Assets\Scripts\CrisisCheck.cs" Line="120" Column="21" />
       <File FileName="Assets\Scripts\PageSystem\Pages.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PageSystem\PageTemplate.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PageSystem\ItemVariables.cs" Line="39" Column="3" />
+      <File FileName="Assets\Scripts\PageSystem\PageTemplate.cs" Line="10" Column="19" />
+      <File FileName="Assets\Scripts\StartScreen.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Zoom.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -10,7 +10,7 @@ public class PageTemplate : MonoBehaviour {
 	public void OpenPage(){
 		foreach (GameObject element in Objects) {
 			variables = element.gameObject.GetComponent<ItemVariables>();
-			element.transform.localScale = variables.scale;
+			element.transform.localScale = new Vector3(variables.scale.x,variables.scale.y,1);
 			Instantiate(element,variables.position,transform.rotation);
 		}
 	}

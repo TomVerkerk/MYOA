@@ -46,7 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Certificate\ElementVariables.cs" />
+     <Compile Include="Assets\Scripts\CrisisCheck.cs" />
      <Compile Include="Assets\Scripts\PageSystem\ItemVariables.cs" />
      <Compile Include="Assets\Scripts\PageSystem\PageTemplate.cs" />
      <Compile Include="Assets\Scripts\PageSystem\Pages.cs" />
