@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XmlFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <name>XmlFile</name>
+  <hideFlags>HideInHierarchy</hideFlags>
+  <fileName>Parlan Users</fileName>
+  <userNames>
+    <string>kwik</string>
+    <string>kwek</string>
+    <string>kwak</string>
+  </userNames>
+  <passWords>
+    <string>1</string>
+    <string>2</string>
+    <string>3</string>
+  </passWords>
+</XmlFile>

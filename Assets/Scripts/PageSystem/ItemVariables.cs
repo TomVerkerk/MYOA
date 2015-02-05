@@ -7,24 +7,20 @@ public class ItemVariables : MonoBehaviour {
 	public Vector3 position;
 	public Vector2 scale;
 	public bool backEnabled;
+	public bool scrollable;
+	public float length;
+	public float scrollSpeed;
 	public bool text;
 	public bool button;
 	public bool image;
 	public bool site;
 	public bool crisischeck;
 	public bool exit;
-//	public bool image;
-//	public string TextField;
-//	public GUIStyle style;
-//	public Texture imageTexture;
-//	public GUIStyle stylo;
 	public Material imageMaterial;
 	public float buttonLeft;
 	public float buttonTop;
 	public float buttonWidth;
 	public float buttonHeight;
-//	public float imageWidth;
-//	public float imageHeight;
 	public int buttonGoesToPage;
 	public int backGoesToPage;
 	public string siteURL;
@@ -32,13 +28,14 @@ public class ItemVariables : MonoBehaviour {
 	private Vector2 screenRes;
 	private CrisisCheck chrisisC;
 	private GameObject[] Buttons;
+	private Vector2 touchBegin;
+	private Vector2 touchEnd;
 
 	void Start(){
 		screenRes.x = Screen.width;
 		screenRes.y = Screen.height;
 		pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
 		if (image) {
-			//transform.localScale = new Vector3(imageWidth,imageHeight,1);
 			gameObject.renderer.material = imageMaterial;
 		}
 	}
@@ -69,33 +66,52 @@ public class ItemVariables : MonoBehaviour {
 					Destroy(chrisisC.check3);
 					Destroy(chrisisC.check4);
 					Destroy(chrisisC.check5);
+					Destroy(chrisisC.aanmelden);
 				}
 				foreach(GameObject buttonObject in Buttons){
 					if(buttonObject!=null){
 						Destroy(buttonObject);
-						//GUI.enabled = false;
 					}
 				}
 				button= false;
 			}
 		}
-		/*	if(image){
-				GUI.DrawTexture(new Rect (screenRes.x*left, screenRes.y*top, screenRes.x*width, screenRes.y*height),imageTexture);
-			}*/
-//		if (text) {
-//			GUI.TextField(new Rect (screenRes.x*left, screenRes.y*top, screenRes.x*width, screenRes.y*height),TextField/*,style*/);
-//		}
 	}
 
 	void Update(){
+		if (scrollable) {
+			foreach (var T in Input.touches) {
+				if (T.phase == TouchPhase.Began) {
+					touchBegin = T.position;
+				} 
+				else if (T.phase == TouchPhase.Moved) {
+					touchEnd = touchBegin - T.position;
+				}
+				//else if(T.phase == TouchPhase.Stationary)
+			}
+			if(Input.touches.Length == 0){
+				touchEnd/=2;
+			}
+			if(transform.position.y < (length+position.y)&&transform.position.y > position.y||transform.position.y >= (length+position.y)&& touchEnd.y > 0 || transform.position.y <= position.y && touchEnd.y < 0){
+				transform.position += new Vector3(0,-touchEnd.y*scrollSpeed,0);
+			}
+		//	else if(transform.position.y > (length+position.y)&& touchEnd.y > 0 || transform.position.y < position.y && touchEnd.y < 0)
+		}
 		if (backEnabled) {
 			if(Input.GetKeyDown(KeyCode.Escape)){
 				if(crisischeck){
-					Destroy(GameObject.FindGameObjectWithTag ("check1"));
-					Destroy(GameObject.FindGameObjectWithTag ("check2"));
-					Destroy(GameObject.FindGameObjectWithTag ("check3"));
-					Destroy(GameObject.FindGameObjectWithTag ("check4"));
-					Destroy(GameObject.FindGameObjectWithTag ("check5"));
+					chrisisC = this.gameObject.GetComponent<CrisisCheck>();
+					chrisisC.check1.gameObject.SetActive(true);
+					chrisisC.check2.gameObject.SetActive(true);
+					chrisisC.check3.gameObject.SetActive(true);
+					chrisisC.check4.gameObject.SetActive(true);
+					chrisisC.check5.gameObject.SetActive(true);
+					Destroy(chrisisC.check1);
+					Destroy(chrisisC.check2);
+					Destroy(chrisisC.check3);
+					Destroy(chrisisC.check4);
+					Destroy(chrisisC.check5);
+					Destroy(chrisisC.aanmelden);
 				}
 				Buttons = GameObject.FindGameObjectsWithTag("Button");
 				pages.openPage (backGoesToPage);
@@ -104,8 +120,6 @@ public class ItemVariables : MonoBehaviour {
 						Destroy(buttonObject);
 					}
 				}
-				//pages.closePage(currentPage);
-			//	button=false;
 			}
 		}
 	}

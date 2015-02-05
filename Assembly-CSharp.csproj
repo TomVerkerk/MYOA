@@ -47,14 +47,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CrisisCheck.cs" />
-     <Compile Include="Assets\Scripts\Log in\Logon.cs" />
-     <Compile Include="Assets\Scripts\Log in\User.cs" />
+     <Compile Include="Assets\Scripts\Log in\Alle_Medewerkers.cs" />
+     <Compile Include="Assets\Scripts\Log in\XmlFile.cs" />
      <Compile Include="Assets\Scripts\PageSystem\ItemVariables.cs" />
      <Compile Include="Assets\Scripts\PageSystem\PageTemplate.cs" />
      <Compile Include="Assets\Scripts\PageSystem\Pages.cs" />
+     <Compile Include="Assets\Scripts\PageSystem\Template.cs" />
      <Compile Include="Assets\Scripts\StartScreen.cs" />
-     <Compile Include="Assets\Scripts\Template\Template.cs" />
-     <Compile Include="Assets\Scripts\Template\TemplateCreator.cs" />
      <Compile Include="Assets\Scripts\Zoom.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
