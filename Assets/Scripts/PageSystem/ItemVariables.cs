@@ -112,6 +112,9 @@ public class ItemVariables : MonoBehaviour {
 					Destroy(chrisisC.check4);
 					Destroy(chrisisC.check5);
 					Destroy(chrisisC.aanmelden);
+					if(chrisisC.beoordeeling){
+						Destroy(chrisisC.button);
+					}
 				}
 				Buttons = GameObject.FindGameObjectsWithTag("Button");
 				pages.openPage (backGoesToPage);

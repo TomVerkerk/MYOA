@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Log in\Users.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Username.cs">
     <Files>
-      <File FileName="Assets\Scripts\Log in\Alle_Medewerkers.cs" Line="12" Column="56" />
-      <File FileName="956" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Log in\Users.cs" Line="10" Column="2" />
+      <File FileName="Assets\Scripts\TextFields.cs" Line="17" Column="15" />
+      <File FileName="Assets\Scripts\CrisisCheck.cs" Line="240" Column="16" />
+      <File FileName="Assets\Scripts\PageSystem\ItemVariables.cs" Line="37" Column="3" />
+      <File FileName="Assets\Username.cs" Line="45" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
