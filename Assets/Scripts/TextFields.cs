@@ -15,6 +15,6 @@ public class TextFields : MonoBehaviour {
 	public GUIStyle gui;
 
 	void OnGUI(){
-		name = GUI.TextField(new Rect(Screen.width*x,Screen.height*y,Screen.width*width/2,Screen.height*height),name,8,gui);
+		name = GUI.TextField(new Rect(Screen.width*x,Screen.height*y,Screen.width*width,Screen.height*height),name,16,gui);
 	}
 }

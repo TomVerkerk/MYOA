@@ -55,7 +55,7 @@ public class ItemVariables : MonoBehaviour {
 					pages.openPage (buttonGoesToPage);
 				}
 				if(crisischeck){
-					chrisisC = this.gameObject.GetComponent<CrisisCheck>();
+					chrisisC = GameObject.FindGameObjectWithTag("CrisisCheck").gameObject.GetComponent<CrisisCheck>();
 					chrisisC.check1.gameObject.SetActive(true);
 					chrisisC.check2.gameObject.SetActive(true);
 					chrisisC.check3.gameObject.SetActive(true);
@@ -67,12 +67,19 @@ public class ItemVariables : MonoBehaviour {
 					Destroy(chrisisC.check4);
 					Destroy(chrisisC.check5);
 					Destroy(chrisisC.aanmelden);
+					GameObject PHolder;
+					PHolder = GameObject.FindGameObjectWithTag("CrisisCheck");
+					Destroy(PHolder);
+					if(chrisisC.beoordeeling){
+						Destroy(GameObject.FindGameObjectWithTag ("BeoordeelButton"));
+					}
 				}
 				foreach(GameObject buttonObject in Buttons){
 					if(buttonObject!=null){
 						Destroy(buttonObject);
 					}
 				}
+			//	Destroy(this.gameObject);
 				button= false;
 			}
 		}
@@ -100,7 +107,7 @@ public class ItemVariables : MonoBehaviour {
 		if (backEnabled) {
 			if(Input.GetKeyDown(KeyCode.Escape)){
 				if(crisischeck){
-					chrisisC = this.gameObject.GetComponent<CrisisCheck>();
+					chrisisC = GameObject.FindGameObjectWithTag("CrisisCheck").gameObject.GetComponent<CrisisCheck>();
 					chrisisC.check1.gameObject.SetActive(true);
 					chrisisC.check2.gameObject.SetActive(true);
 					chrisisC.check3.gameObject.SetActive(true);
@@ -112,17 +119,20 @@ public class ItemVariables : MonoBehaviour {
 					Destroy(chrisisC.check4);
 					Destroy(chrisisC.check5);
 					Destroy(chrisisC.aanmelden);
+					GameObject PHolder;
+					PHolder = GameObject.FindGameObjectWithTag("CrisisCheck");
+					Destroy(PHolder);
 					if(chrisisC.beoordeeling){
-						Destroy(chrisisC.button);
+						Destroy(GameObject.FindGameObjectWithTag ("BeoordeelButton"));
 					}
 				}
 				Buttons = GameObject.FindGameObjectsWithTag("Button");
-				pages.openPage (backGoesToPage);
 				foreach(GameObject buttonObject in Buttons){
 					if(buttonObject.gameObject!=null){
 						Destroy(buttonObject);
 					}
 				}
+				pages.openPage (backGoesToPage);
 			}
 		}
 	}

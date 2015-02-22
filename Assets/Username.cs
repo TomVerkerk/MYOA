@@ -13,46 +13,55 @@ public class Username : MonoBehaviour {
 	private GameObject[] buttons;
 	private Pages pages;
 	public GUIStyle gui;
+	private string invalid = "";
+	private GUIStyle invalidText;
 
 	// Use this for initialization
 	void Start () {
+		invalidText = new GUIStyle ();
+		invalidText.active.textColor = Color.red;
+		invalidText.fontSize = 20;
 		pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
 
-		keyBoard = new TouchScreenKeyboard ("", TouchScreenKeyboardType.Default, false, false, true, false, "");
+		keyBoard = new TouchScreenKeyboard ("", TouchScreenKeyboardType.PhonePad, false, true, true, true, "");
 		keyBoard.active = false;
 
 		Texts = new GameObject ();
-		//Instantiate (Texts, transform.position, transform.rotation);
 
 		username = Texts.gameObject.AddComponent<TextFields>();
 		username.name = "Username";
 		username.x = 0.16f;
 		username.y = 0.16f;
-		username.width = 0.85f;
-		username.height = 0.1f;
+		username.width = 0.68f;
+		username.height = 0.15f;
 		username.gui = gui;
 
 		password = Texts.gameObject.AddComponent<TextFields>();
 		password.name = "Password";
 		password.x = 0.16f;
 		password.y = 0.35f;
-		password.width = 0.85f;
-		password.height = 0.1f;
+		password.width = 0.68f;
+		password.height = 0.15f;
 		password.gui = gui;
 	}
 
 	void OnGUI(){
+		GUI.TextField(new Rect(Screen.width*0.16f,Screen.height*0.77f,Screen.width*0.68f,Screen.height*0.15f),invalid,invalidText);
 		GUI.color = Color.clear;
 		if(GUI.Button(new Rect(Screen.width*0.155f,Screen.height*(0.52f),Screen.width*0.68f,Screen.height*0.125f),"")){
 			if(username.name == user && password.name == pass){
 				Destroy(Texts);
 				buttons = GameObject.FindGameObjectsWithTag("Button");
+				keyBoard.active = false;
 				foreach(GameObject buttonObject in buttons){
 					if(buttonObject!=null){
 						Destroy(buttonObject);
 					}
 				}
 				pages.openPage(1);
+			}
+			else{
+				invalid = "Verkeerde combinatie!";
 			}
 		}
 	}

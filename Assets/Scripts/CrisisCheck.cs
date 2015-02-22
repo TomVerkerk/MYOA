@@ -262,7 +262,6 @@ public class CrisisCheck : MonoBehaviour {
 		Destroy (check4);
 		Destroy (check5); 
 		Destroy (aanmelden);
-		Destroy (this.gameObject);
 		pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
 		if(CCheck){
 			score = a + b + c + d;          
@@ -273,10 +272,15 @@ public class CrisisCheck : MonoBehaviour {
 				pages.openPage(9);
 			}
 		}
+		Destroy(GameObject.FindGameObjectWithTag("Button"));
 		if(beoordeeling){
 			Destroy(button);
-			Destroy(GameObject.FindGameObjectWithTag("Button"));
-			pages.openPage(2);
+			//Destroy(GameObject.FindGameObjectWithTag("Button"));
+			//pages.openPage(13);
+			Application.Quit();
 		}
+		GameObject PHolder;
+		PHolder = GameObject.FindGameObjectWithTag("CrisisCheck");
+		Destroy(PHolder);
 	}
 }
