@@ -9,9 +9,12 @@ public class Selecter : MonoBehaviour {
 	public bool clicked=false;
 	private bool shift = false;
 	private ItemVariables objVar;
+	private SelectionGatherer getherer;
 
+	void Start(){
+		getherer = GetComponent<SelectionGatherer> ();
+	}
 
-	
 	// Update is called once per frame
 	void Update () {
 		if (enabled) {
@@ -37,16 +40,17 @@ public class Selecter : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			hits = Physics.RaycastAll(ray,100);
 			foreach(RaycastHit hit in hits){
-				if(hit.collider.GetComponent<ItemVariables>().image && hit.collider.GetComponent<ItemVariables>().imageTapple == false){
-					GetComponent<AppChangeImage>().enabled = false;
+				if(hit.collider.GetComponent<ItemVariables>().image && hit.collider.GetComponent<ItemVariables>().imageTapple == false && !hit.collider.GetComponent<ItemVariables>().button){
 					Pages pages=GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>();
 					foreach(GameObject obj in pages.PageArray[GetComponent<Database>().selectedPage].objects){
 						if(obj.GetComponent<ItemVariables>().itemName == hit.collider.GetComponent<ItemVariables>().itemName){
 							if(!GameObject.FindGameObjectWithTag("UI").GetComponent<App_TemplateEditor>().enabled){
 								clicked=true;
 								objVar = hit.collider.GetComponent<ItemVariables>();
-								GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
-								GetComponent<AppChangeImage>().itemObject = obj;
+								if(!objVar.gathered){
+									getherer.addToSelection(objVar);
+									objVar.gathered = true;
+								}
 								break;
 							}
 						}
@@ -62,8 +66,10 @@ public class Selecter : MonoBehaviour {
 							if(GameObject.FindGameObjectWithTag("UI").GetComponent<App_TemplateEditor>().enabled){
 								clicked=true;
 								objVar = hit.collider.GetComponent<ItemVariables>();
-								GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
-								GetComponent<AppChangeImage>().itemObject = obj;
+								if(!objVar.gathered){
+									getherer.addToSelection(objVar);
+									objVar.gathered = true;
+								}
 								break;
 							}
 						}

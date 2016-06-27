@@ -54,9 +54,10 @@ public class ItemVariables : MonoBehaviour {
 	public bool selected = false;
 	public bool shift = false;
 	private Texture selectedImage;
+	private SelectionGatherer gatherer;
+	public bool gathered = false;
 
 	void Start(){
-		//itemName = gameObject.name;
 		buttonStyle = new GUIStyle ();
 		buttonStyle.alignment = TextAnchor.MiddleCenter;
 #if UNITY_EDITOR
@@ -137,6 +138,114 @@ public class ItemVariables : MonoBehaviour {
 		if (scroll != null) {
 			scroller = scroll.GetComponent<Scroller> ();
 		}
+		gatherer = GameObject.FindGameObjectWithTag("UI").GetComponent<SelectionGatherer> ();
+	}
+
+	public void setSelection(){
+		gathered = false;
+		gatherer.clearSelection ();
+		Buttons = GameObject.FindGameObjectsWithTag("Button");
+		if(selected){
+			selected=false;
+			ui.GetComponent<AppChangeImage>().enabled = false;
+			ui.GetComponent<AppChangeButton>().enabled = false;
+			ui.GetComponent<ObjectLibrary>().enabled = true;
+		}
+		else{
+			foreach(GameObject buttonObject in Buttons){
+				buttonObject.GetComponent<ItemVariables>().selected=false;
+			}
+			selected=true;
+			ui.GetComponent<Selecter>().clicked = false;
+			ui.GetComponent<ObjectLibrary>().enabled = false;
+			ui.GetComponent<App_NewPage>().enabled = false;
+			ui.GetComponent<App_Button>().enabled = false;
+			ui.GetComponent<App_Image>().enabled = false;
+			if(!templateItem && !ui.GetComponent<App_TemplateEditor>().enabled){
+				if(image){
+					ui.GetComponent<AppChangeImage>().enabled = false;
+					pages=GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>();
+					foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].objects){
+						if(obj.GetComponent<ItemVariables>().itemName == itemName){
+							ui.GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
+							ui.GetComponent<AppChangeImage>().itemObject = obj;
+						}
+					}
+					foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].templateObjects){
+						if(obj.GetComponent<ItemVariables>().itemName == itemName){
+							ui.GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
+							ui.GetComponent<AppChangeImage>().itemObject = obj;
+						}
+					}
+					ui.GetComponent<AppChangeImage> ().pageOpened = true;
+					ui.GetComponent<AppChangeImage> ().Reset ();
+					ui.GetComponent<AppChangeImage>().enabled = true;
+					ui.GetComponent<AppChangeButton>().enabled = false;
+				}
+				else if(button){
+					ui.GetComponent<AppChangeButton>().enabled = false;
+					pages = GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>();
+					foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].objects){
+						if(obj.GetComponent<ItemVariables>().itemName == itemName){
+							ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
+							ui.GetComponent<AppChangeButton>().itemObject = obj;
+						}
+					}
+					foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].templateObjects){
+						if(obj.GetComponent<ItemVariables>().itemName == itemName){
+							ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
+							ui.GetComponent<AppChangeButton>().itemObject = obj;
+							break;
+						}
+					}
+					ui.GetComponent<AppChangeButton>().Reset();
+					ui.GetComponent<AppChangeButton>().enabled = true;
+					ui.GetComponent<AppChangeImage>().enabled = false;
+				}
+			}
+			else if(templateItem && ui.GetComponent<App_TemplateEditor>().enabled){
+				if(image){
+					ui.GetComponent<AppChangeImage>().enabled = false;
+					pages=GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>();
+					foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].objects){
+						if(obj.GetComponent<ItemVariables>().itemName == itemName){
+							ui.GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
+							ui.GetComponent<AppChangeImage>().itemObject = obj;
+						}
+					}
+					foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].templateObjects){
+						if(obj.GetComponent<ItemVariables>().itemName == itemName){
+							ui.GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
+							ui.GetComponent<AppChangeImage>().itemObject = obj;
+						}
+					}
+					ui.GetComponent<AppChangeImage> ().pageOpened = true;
+					ui.GetComponent<AppChangeImage> ().Reset ();
+					ui.GetComponent<AppChangeImage>().enabled = true;
+					ui.GetComponent<AppChangeButton>().enabled = false;
+				}
+				else if(button){
+					ui.GetComponent<AppChangeButton>().enabled = false;
+					pages = GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>();
+					foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].objects){
+						if(obj.GetComponent<ItemVariables>().itemName == itemName){
+							ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
+							ui.GetComponent<AppChangeButton>().itemObject = obj;
+						}
+					}
+					foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].templateObjects){
+						if(obj.GetComponent<ItemVariables>().itemName == itemName){
+							ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
+							ui.GetComponent<AppChangeButton>().itemObject = obj;
+							break;
+						}
+					}
+					ui.GetComponent<AppChangeButton>().Reset();
+					ui.GetComponent<AppChangeButton>().enabled = true;
+					ui.GetComponent<AppChangeImage>().enabled = false;
+				}
+			}
+		}
 	}
 
 	void OnGUI(){
@@ -156,104 +265,11 @@ public class ItemVariables : MonoBehaviour {
 					Buttons = GameObject.FindGameObjectsWithTag("Button");
 					ui.GetComponent<Selecter>().nothingClicked = false;
 					if(shift){
-						if(selected){
-							selected=false;
-							ui.GetComponent<AppChangeImage>().enabled = false;
-							ui.GetComponent<AppChangeButton>().enabled = false;
-						}
-						else{
-							foreach(GameObject buttonObject in Buttons){
-								buttonObject.GetComponent<ItemVariables>().selected=false;
-							}
-							ui.GetComponent<Selecter>().clicked = false;
-							ui.GetComponent<App_NewPage>().enabled = false;
-							ui.GetComponent<App_Button>().enabled = false;
-							ui.GetComponent<App_Image>().enabled = false;
-							if(!templateItem && !ui.GetComponent<App_TemplateEditor>().enabled){
-								selected=true;
-								if(image){
-									ui.GetComponent<AppChangeImage>().enabled = false;
-									pages=GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>();
-									foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].objects){
-										if(obj.GetComponent<ItemVariables>().itemName == itemName){
-											ui.GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
-											ui.GetComponent<AppChangeImage>().itemObject = obj;
-										}
-									}
-									foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].templateObjects){
-										if(obj.GetComponent<ItemVariables>().itemName == itemName){
-											ui.GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
-											ui.GetComponent<AppChangeImage>().itemObject = obj;
-										}
-									}
-									ui.GetComponent<AppChangeImage> ().pageOpened = true;
-									ui.GetComponent<AppChangeImage> ().Reset ();
-									ui.GetComponent<AppChangeImage>().enabled = true;
-									ui.GetComponent<AppChangeButton>().enabled = false;
-								}
-								else{
-									ui.GetComponent<AppChangeButton>().enabled = false;
-									pages = GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>();
-									foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].objects){
-										if(obj.GetComponent<ItemVariables>().itemName == itemName){
-											ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
-											ui.GetComponent<AppChangeButton>().itemObject = obj;
-										}
-									}
-									foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].templateObjects){
-										if(obj.GetComponent<ItemVariables>().itemName == itemName){
-											ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
-											ui.GetComponent<AppChangeButton>().itemObject = obj;
-											break;
-										}
-									}
-									ui.GetComponent<AppChangeButton>().Reset();
-									ui.GetComponent<AppChangeButton>().enabled = true;
-									ui.GetComponent<AppChangeImage>().enabled = false;
-								}
-							}
-							else if(templateItem && ui.GetComponent<App_TemplateEditor>().enabled){
-									selected=true;
-									if(image){
-										ui.GetComponent<AppChangeImage>().enabled = false;
-										pages=GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>();
-										foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].objects){
-											if(obj.GetComponent<ItemVariables>().itemName == itemName){
-												ui.GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
-												ui.GetComponent<AppChangeImage>().itemObject = obj;
-											}
-										}
-										foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].templateObjects){
-											if(obj.GetComponent<ItemVariables>().itemName == itemName){
-												ui.GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
-												ui.GetComponent<AppChangeImage>().itemObject = obj;
-											}
-										}
-										ui.GetComponent<AppChangeImage> ().pageOpened = true;
-										ui.GetComponent<AppChangeImage> ().Reset ();
-										ui.GetComponent<AppChangeImage>().enabled = true;
-										ui.GetComponent<AppChangeButton>().enabled = false;
-									}
-									else{
-										ui.GetComponent<AppChangeButton>().enabled = false;
-										pages = GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>();
-										foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].objects){
-											if(obj.GetComponent<ItemVariables>().itemName == itemName){
-												ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
-												ui.GetComponent<AppChangeButton>().itemObject = obj;
-											}
-										}
-										foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].templateObjects){
-											if(obj.GetComponent<ItemVariables>().itemName == itemName){
-												ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
-												ui.GetComponent<AppChangeButton>().itemObject = obj;
-												break;
-											}
-										}
-										ui.GetComponent<AppChangeButton>().Reset();
-										ui.GetComponent<AppChangeButton>().enabled = true;
-										ui.GetComponent<AppChangeImage>().enabled = false;
-									}
+						if(!templateItem && !ui.GetComponent<App_TemplateEditor>().enabled||
+						   templateItem && ui.GetComponent<App_TemplateEditor>().enabled){
+							if(!gathered){
+								gatherer.addToSelection(this);
+								gathered = true;
 							}
 						}
 					}
@@ -299,16 +315,8 @@ public class ItemVariables : MonoBehaviour {
 								}
 								GameObject.FindGameObjectWithTag("ImagePlayer").GetComponent<ImagePlayer>().closeImage();
 								ui.GetComponent<AppChangeButton>().enabled = false;
-								//pages = GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>();
 								ui.GetComponent<Database>().selectedPage = buttonGoesToPage;
-								/*foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].objects){
-									if(obj.GetComponent<ItemVariables>().itemName == itemName){
-										ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
-										ui.GetComponent<AppChangeButton>().itemObject = obj;
-									}
-								}*/
 								ui.GetComponent<AppChangeImage>().enabled = false;
-								//shift = false;
 								pages.openPage (buttonGoesToPage);
 							}
 						}
@@ -344,17 +352,6 @@ public class ItemVariables : MonoBehaviour {
 					}
 				}
 			}
-		}
-		if(Input.GetMouseButtonDown(0)&&shift){
-			StartCoroutine(Check());
-		}
-	}
-
-	IEnumerator Check()
-	{
-		yield return new WaitForSeconds(0.1f);
-		if(!button && image && !imageTapple){
-			ui.GetComponent<Selecter>().Check();
 		}
 	}
 }

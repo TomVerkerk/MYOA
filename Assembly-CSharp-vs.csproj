@@ -88,6 +88,7 @@
      <Compile Include="Assets\Scripts\UI\MainApp.cs" />
      <Compile Include="Assets\Scripts\UI\NewApp.cs" />
      <Compile Include="Assets\Scripts\UI\Selecter.cs" />
+     <Compile Include="Assets\Scripts\UI\SelectionGatherer.cs" />
      <Compile Include="Assets\Scripts\UI\StartUI.cs" />
      <Compile Include="Assets\Scripts\UI\UI.cs" />
      <Compile Include="Assets\Scripts\UI\UIElement.cs" />

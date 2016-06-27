@@ -16,7 +16,6 @@ public class PageTemplate : MonoBehaviour {
 	private ItemVariables variables;
 	private Vector3 scaleOffset = Vector3.zero;
 	private float lengthCount;
-	//public GameObject templateObj;
 
 	public void OpenPage(){
 		lengthCount = 0;
@@ -26,8 +25,6 @@ public class PageTemplate : MonoBehaviour {
 		scroller.menubuttons.Clear ();
 		if(!templateOnly){
 			foreach (GameObject element in objects) {
-				//if itemvar != null
-				//else stop/message
 				variables = element.GetComponent<ItemVariables> ();
 				if (variables.image) {
 					if (variables.scale.y > 0) {

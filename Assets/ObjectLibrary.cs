@@ -84,7 +84,6 @@ public class ObjectLibrary : MonoBehaviour {
 							pages.PageArray[data.selectedPage].templateOnly = false;
 						}
 						pages.openPage(data.selectedPage);
-						Debug.Log("saved");
 					}
 					GUI.DrawTexture(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.25f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),frame);
 					count++;

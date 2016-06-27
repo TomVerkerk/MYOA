@@ -162,10 +162,12 @@ public class AppChangeImage : MonoBehaviour {
 					Buttons = GameObject.FindGameObjectsWithTag("Button");
 					foreach(GameObject but in Buttons){
 						but.GetComponent<ItemVariables>().selected = false;
+						but.GetComponent<ItemVariables>().gathered = false;
 					}
 					GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().CheckUse();
-					enabled = false;
+					GetComponent<ObjectLibrary>().enabled = true;
 					Reset();
+					enabled = false;
 				}
 			}
 		}

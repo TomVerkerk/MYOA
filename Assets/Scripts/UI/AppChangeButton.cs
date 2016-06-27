@@ -18,7 +18,6 @@ public class AppChangeButton : MonoBehaviour {
 	private Texture notVisibleTex;
 	private Texture usingTex;
 	private Texture inTemplateImg;
-//	private GameObject[] Buttons;
 
 	private float posX = 0;
 	private string posXString = "-1";
@@ -92,7 +91,6 @@ public class AppChangeButton : MonoBehaviour {
 				toPageString = (item.buttonGoesToPage+1).ToString();
 				imageString = item.buttonTexture.name;
 				activeGameObject = GameObject.Find (buttonName + "(Clone)").GetComponent<ItemVariables> ();
-			//	activeGameObject.buttonVisable = visible;
 				visible = item.buttonVisable;
 				if (visible) {
 					usingTex = visibleTex;
@@ -121,30 +119,7 @@ public class AppChangeButton : MonoBehaviour {
 					usingTex = notVisibleTex;
 				}
 			}
-	/*		if(GUI.Button(new Rect (Screen.width * (0.225f+0.65825f), Screen.height * 0.783f, Screen.width * 0.035f, Screen.height * 0.055f),inTemplateImg, textStyle)){
-				inTemplate = !inTemplate;
-				if (inTemplate) {
-					inTemplateImg = visibleTex;
-				} else {
-					inTemplateImg = notVisibleTex;
-				}
-			}
-*/
 			GUI.color = Color.clear;
-		/*	if (GUI.Button (new Rect (Screen.width * (0.28f+0.6582f), Screen.height * 0.11f, Screen.width * 0.058f, Screen.height * 0.1f), "")) {
-				data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().objects.Remove(itemObject);
-				GameObject livingObject = GameObject.Find (buttonName+"(Clone)");
-				livingObject.gameObject.SetActive(false);
-				Destroy(livingObject);
-				gameObject.GetComponent<App_Menu>().enabled = true;
-				enabled = false;
-			}*/
-
-		/*	if (GUI.Button (new Rect (Screen.width*0.6582f, 0, Screen.width * 0.06f, Screen.height * 0.1f), "")) {
-				GetComponent<App_Menu> ().enabled = true;
-				Reset();
-				enabled = false;
-			}*/
 			if (GUI.Button (new Rect (Screen.width * (0.06f+0.6582f), Screen.height * 0.87f, Screen.width * 0.23f, Screen.height * 0.1f), "")) {
 				if (float.TryParse (posXString, out posX) == true &&
 					float.TryParse (posYString, out posY) == true &&
@@ -187,6 +162,7 @@ public class AppChangeButton : MonoBehaviour {
 						GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().CheckUse();
 					}
 					Reset();
+					GetComponent<ObjectLibrary>().enabled = true;
 					enabled = false;
 				}
 			}
