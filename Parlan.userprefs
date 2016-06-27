@@ -1,17 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CrisisCheck.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\Kunstgras\Assets\Scripts\Timer.cs">
     <Files>
-      <File FileName="Assets\Scripts\PageSystem\Pages.cs" Line="33" Column="1" />
-      <File FileName="Assets\Scripts\PageSystem\ItemVariables.cs" Line="44" Column="3" />
-      <File FileName="Assets\Scripts\PageSystem\PageTemplate.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PageSystem\Template.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\TextFields.cs" Line="16" Column="2" />
-      <File FileName="Assets\Username.cs" Line="23" Column="29" />
-      <File FileName="Assets\Scripts\Zoom.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CrisisCheck.cs" Line="119" Column="64" />
       <File FileName="Assets\Scripts\Log in\Alle_Medewerkers.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Log in\XmlFile.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CrisisCheck.cs" Line="280" Column="23" />
+      <File FileName="Assets\Scripts\Username.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\TextFields.cs" Line="1" Column="1" />
+      <File FileName="..\Kunstgras\Assets\Scripts\Timer.cs" Line="83" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

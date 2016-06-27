@@ -5,90 +5,165 @@ using System.Collections.Generic;
 public class PageTemplate : MonoBehaviour {
 
 	public bool template;
-/*	private enum Choise {
-		Template1,
-		Template2,
-		Template3,
-		Template4,
-		Template5,
-		Template6,
-		Template7,
-		Template8,
-		Template9,
-		Template10
-	};
-	public Choise Templates; */
+	public bool templateOnly = false;
+	public string pageName;
+	public float scrollSpeed;
+	private float length;
+	public Scroller scroller;
 	public int index;
-	//public List<GameObject> templateObjects;
+	public List<GameObject> templateObjects;
 	public List<GameObject> objects;
 	private ItemVariables variables;
-	private Template templateItem;
-
-	/*void Start(){
-		switch (Templates) {
-		case Choise.Template1:
-			Debug.Log("P");
-			index = 0;
-			break;
-		case Choise.Template2:
-			Debug.Log("P");
-			index = 1;
-			break;
-		case Choise.Template3:
-			index = 2;
-			break;
-		case Choise.Template4:
-			index = 3;
-			break;
-		case Choise.Template5:
-			index = 4;
-			break;
-		case Choise.Template6:
-			index = 5;
-			break;
-		case Choise.Template7:
-			index = 6;
-			break;
-		case Choise.Template8:
-			index = 7;
-			break;
-		case Choise.Template9:
-			index = 8;
-			break;
-		case Choise.Template10:
-			index = 9;
-			break;
-		}
-	}*/
+	private Vector3 scaleOffset = Vector3.zero;
+	private float lengthCount;
+	//public GameObject templateObj;
 
 	public void OpenPage(){
-		if(template){
-			foreach(GameObject element in objects){
-				templateItem = element.GetComponent<Template>();
-				if(templateItem != null){
-					GameObject Gobject = Instantiate(element,templateItem.ObjectPositions[index],transform.rotation) as GameObject;
-					//Gobject.gameObject.GetComponent<Template>().SetObject(index);
-					Gobject.gameObject.GetComponent<Template>().pageIndex = this;
+		lengthCount = 0;
+		scroller = (Resources.Load ("Scroller") as GameObject).GetComponent<Scroller> ();
+
+		scroller.attached.Clear ();
+		scroller.menubuttons.Clear ();
+		if(!templateOnly){
+			foreach (GameObject element in objects) {
+				//if itemvar != null
+				//else stop/message
+				variables = element.GetComponent<ItemVariables> ();
+				if (variables.image) {
+					if (variables.scale.y > 0) {
+						if ((variables.position.y - variables.scale.y) < -20) {
+							if (-(variables.position.y - variables.scale.y) > lengthCount) {
+								lengthCount = -(variables.position.y - variables.scale.y);
+
+							}
+						}
+					} else {
+						if (variables.position.y < -20) {
+							if (-variables.position.y > lengthCount) {
+								lengthCount = -variables.position.y;
+							}
+						}
+					}
+				} else if (variables.button) {
+					if (variables.buttonHeight > 0) {
+						if (variables.buttonTopStart + variables.buttonHeight > 1) {
+							if ((variables.buttonTopStart + variables.buttonHeight) * 20 > lengthCount) {
+								lengthCount = (variables.buttonTopStart + variables.buttonHeight) * 20;
+							}
+						}
+					} else {
+						if (variables.buttonTopStart > 1) {
+							if (variables.buttonTopStart * 20 > lengthCount) {
+								lengthCount = variables.buttonTopStart * 20;
+							}
+						}
+					}
+				}
+				variables.templateItem = false;
+				element.transform.localScale = new Vector3 (variables.scale.x, variables.scale.y, 1);
+				scaleOffset = new Vector3 (5.625f - variables.scale.x / 2, -10 + variables.scale.y / 2);
+				if (variables.menuBar) {
+					element.GetComponent<MenuBar> ().buttonsObj.Clear ();
+					foreach (GameObject button in element.GetComponent<MenuBar>().buttons) {
+						button.GetComponent<ItemVariables> ().buttonTopStart = button.GetComponent<ItemVariables> ().buttonTop;
+						GameObject buttonObj = Instantiate (button, transform.position, transform.rotation) as GameObject;
+						element.GetComponent<MenuBar> ().buttonsObj.Add (buttonObj);
+						scroller.attached.Add (buttonObj);
+						buttonObj.GetComponent<ItemVariables> ().button = false;
+					}
+				}
+				if (variables.slider) {
+					element.GetComponent<Slider> ().parentVar = variables;
+					element.GetComponent<Slider> ().SpawnStaticImage ();
+					element.GetComponent<Slider> ().SpawnImage ();
+					GameObject obj = element.GetComponent<Slider> ().spawnedObject;
+					scroller.attached.Add (obj);
+				}
+				scroller.attached.Add (Instantiate (element, variables.position - scaleOffset, element.transform.rotation) as GameObject);
+			}
+		}
+		foreach(GameObject element in templateObjects){
+			element.GetComponent<ItemVariables>().templateItem = false;
+			variables = element.GetComponent<ItemVariables>();
+			if(variables.image){
+				if(variables.scale.y>0){
+					if((variables.position.y-variables.scale.y)<-20){
+						if(-(variables.position.y-variables.scale.y)>lengthCount){
+							lengthCount = -(variables.position.y-variables.scale.y);
+						}
+					}
 				}
 				else{
-					Debug.Log("Can't find templatescript in " + element);
+					if(variables.position.y<-20){
+						if(-variables.position.y>lengthCount){
+							lengthCount = -variables.position.y;
+						}
+					}
 				}
 			}
-		}
-		else{
-			foreach (GameObject element in objects) {
-				variables = element.gameObject.GetComponent<ItemVariables>();
-				element.transform.localScale = new Vector3(variables.scale.x,variables.scale.y,1);
-				Instantiate(element,variables.position,transform.rotation);
+			else if(variables.button){
+				if(variables.buttonHeight>0){
+					if(variables.buttonTopStart+variables.buttonHeight>1){
+						if((variables.buttonTopStart+variables.buttonHeight)*20>lengthCount){
+							lengthCount = (variables.buttonTopStart+variables.buttonHeight)*20;
+						}
+					}
+				}
+				else{
+					if(variables.buttonTopStart>1){
+						if(variables.buttonTopStart*20>lengthCount){
+							lengthCount = variables.buttonTopStart*20;
+						}
+					}
+				}
 			}
+			variables.templateItem = true;
+			element.transform.localScale = new Vector3(variables.scale.x,variables.scale.y,1);
+			scaleOffset = new Vector3(5.625f - variables.scale.x/2,-10 + variables.scale.y/2);
+			if(variables.menuBar){
+				element.GetComponent<MenuBar>().buttonsObj.Clear();
+				foreach(GameObject button in element.GetComponent<MenuBar>().buttons){
+					button.GetComponent<ItemVariables>().buttonTopStart = button.GetComponent<ItemVariables>().buttonTop;
+					GameObject buttonObj = Instantiate(button,transform.position,transform.rotation) as GameObject;
+					element.GetComponent<MenuBar>().buttonsObj.Add(buttonObj);
+					scroller.attached.Add(buttonObj);
+					buttonObj.GetComponent<ItemVariables>().button = false;
+				}
+			}
+			if(variables.slider){
+				element.GetComponent<Slider>().parentVar = variables;
+				element.GetComponent<Slider>().SpawnStaticImage();
+				element.GetComponent<Slider>().SpawnImage();
+				GameObject obj = element.GetComponent<Slider>().spawnedObject;
+				scroller.attached.Add(obj);
+			}
+			scroller.attached.Add(Instantiate(element,variables.position - scaleOffset,element.transform.rotation) as GameObject);
 		}
+		if (lengthCount > 20) {
+			scroller.on = true;
+		} else {
+			scroller.on=false;
+		}
+		scroller.scrollTest = 0;
+		scroller.scrollSpeed = 4;
+		scroller.length = lengthCount - 20;
+		Instantiate (scroller);
 	}
 
 	public void ClosePage(){
+		GameObject[] buttons = GameObject.FindGameObjectsWithTag ("Button");
+		foreach (GameObject button in buttons) {
+			if(button!=null){
+				Destroy(button.gameObject);
+			}
+		}
 		foreach (GameObject element in objects) {
 			if(element!=null){
 				Destroy(element.gameObject);
 			}
+		}
+		if (scroller.gameObject != null) {
+			Destroy(scroller.gameObject);
 		}
 	}
 }
