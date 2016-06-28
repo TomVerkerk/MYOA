@@ -9,12 +9,20 @@ public class SelectionGatherer : MonoBehaviour {
 	private bool checking = false;
 	private Images images;
 	private Texture background;
+	private int index = 0;
+	private Texture buttonBackground;
+	private GUIStyle style;
 
 	void Start(){
+		style = new GUIStyle ();
 		images = GetComponent<Images> ();
+		style.fontSize = (55*Screen.width)/1920;
 		foreach (Texture image in images.images) {
 			if (image.name == "backgroundRight") {
 				background = image;
+			}
+			if(image.name == "buttonBackground 1"){
+				buttonBackground = image;
 			}
 		}
 	}
@@ -24,7 +32,6 @@ public class SelectionGatherer : MonoBehaviour {
 			obj.gathered = false;
 		}
 		selections.Clear ();
-
 	}
 
 	public void addToSelection(ItemVariables obj){
@@ -50,6 +57,21 @@ public class SelectionGatherer : MonoBehaviour {
 	void OnGUI(){
 		if (enabled) {
 			GUI.DrawTexture(new Rect(Screen.width* 0.6582f, 0, Screen.width * 0.3418f, Screen.height), background);
+			GUI.TextArea(new Rect (Screen.width * 0.723f, Screen.height * 0.03f, Screen.width * 0.23f, Screen.height * 0.05f), "Choose Object", style);
+			foreach(ItemVariables item in selections){
+				if(item!=null){
+					if (GUI.Button (new Rect (Screen.width * 0.723f, Screen.height * (0.16f + (0.07f * (index))), Screen.width * 0.23f, Screen.height * 0.05f), buttonBackground, style)) {
+						item.setSelection();
+						clearSelection();
+						enabled=false;
+						index=0;
+						break;
+					}
+					GUI.TextArea(new Rect (Screen.width * (0.823f - (item.itemName.Length * 0.0052f)), Screen.height * (0.16f + (0.07f * (index))), Screen.width * 0.23f, Screen.height * 0.05f), item.itemName, style);
+					index++;
+				}
+			}
+			index=0;
 		}
 		if(Event.current.shift&&Input.GetMouseButtonDown(0) && !checking){
 			checking = true;

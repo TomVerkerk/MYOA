@@ -128,6 +128,7 @@ public class MainApp : MonoBehaviour {
 				templateOnly = false;
 			//	GetComponent<App_Pages>().enabled = true;
 				GetComponent<NewApp>().enabled = false;
+				GetComponent<ObjectLibrary>().enabled = true;
 				GetComponent<Load_App>().enabled = false;
 				GetComponent<App_TemplateEditor>().enabled = false;
 				GetComponent<App_Images>().enabled = false;
@@ -184,6 +185,7 @@ public class MainApp : MonoBehaviour {
 				}
 				templateOnly = true;
 				GetComponent<App_TemplateEditor>().enabled = true;
+				GetComponent<ObjectLibrary>().enabled = true;
 			//	GetComponent<App_Pages>().enabled = false;
 				GetComponent<NewApp>().enabled = false;
 				GetComponent<Load_App>().enabled = false;
