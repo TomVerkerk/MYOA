@@ -92,6 +92,8 @@ public class Load_App : MonoBehaviour {
 					GetComponent<Selecter>().enabled = true;
 					GetComponent<ObjectLibrary>().enabled = true;
 					GetComponent<App_Pages>().enabled=true;
+					GetComponent<App_TemplateEditor>().enabled = false;
+					GetComponent<App_Pages>().templateMenuOpened = false;
 					enabled = false;
 				}
 			}

@@ -74,7 +74,6 @@ public class AppChangeImage : MonoBehaviour {
 			GUI.DrawTexture(new Rect(Screen.width* 0.6582f, 0, Screen.width * 0.3418f, Screen.height), background);
 			textStyle.fontSize = (42*Screen.width)/1920;
 			ImageName = GUI.TextArea (new Rect (Screen.width * (0.02f+0.6582f), Screen.height * 0.195f, Screen.width * 0.23f, Screen.height * 0.1f), ImageName, textStyle);
-			//item.itemName = ImageName;
 			posXString = GUI.TextArea (new Rect (Screen.width * (0.08f+0.6582f), Screen.height * 0.315f, Screen.width * 0.05f, Screen.height * 0.05f), posXString, textStyle);
 			posYString = GUI.TextArea (new Rect (Screen.width * (0.225f+0.6582f), Screen.height * 0.315f, Screen.width * 0.05f, Screen.height * 0.05f), posYString, textStyle);
 			scaleXString = GUI.TextArea (new Rect (Screen.width * (0.08f+0.6582f), Screen.height * 0.44f, Screen.width * 0.05f, Screen.height * 0.05f), scaleXString, textStyle);
@@ -82,26 +81,6 @@ public class AppChangeImage : MonoBehaviour {
 			imageString = GUI.TextArea (new Rect (Screen.width *( 0.028f+0.6582f), Screen.height * 0.565f, Screen.width * 0.27f, Screen.height * 0.05f), imageString, textStyle);
 			textStyle.fontSize = (55*Screen.width)/1920;
 			GUI.TextField (new Rect (Screen.width * (0.06f+0.6582f), Screen.height * 0.02f, Screen.width * 0.23f, Screen.height * 0.1f), ImageName, textStyle);
-		/*	if (GUI.Button (new Rect (Screen.width * (0.28f+0.6582f), Screen.height * 0.11f, Screen.width * 0.058f, Screen.height * 0.1f), "")) {
-				data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().objects.Remove(itemObject);
-				GameObject livingObject = GameObject.Find (ImageName);
-				livingObject.gameObject.SetActive(false);
-				Destroy(livingObject);
-				gameObject.GetComponent<App_Menu>().enabled = true;
-				enabled = false;
-			}*/
-			/*if (GUI.Button (new Rect (Screen.width*0.6582f, 0, Screen.width * 0.06f, Screen.height * 0.1f), "")) {
-				if(pageOpened){
-					GetComponent<App_Menu> ().enabled = true;
-					GetComponent<MainApp> ().enabled = false;
-				}
-				else{
-					GetComponent<MainApp> ().enabled = true;
-					GetComponent<App_Menu> ().enabled = false;
-				}
-				Reset();
-				enabled = false;
-			}*/
 			if(GUI.Button(new Rect (Screen.width * (0.225f+0.65825f), Screen.height * 0.688f, Screen.width * 0.035f, Screen.height * 0.055f),usingTex, textStyle)){
 				clickable = !clickable;
 				if (clickable) {
@@ -111,6 +90,32 @@ public class AppChangeImage : MonoBehaviour {
 				}
 			}
 			GUI.color = Color.clear;
+			if (GUI.Button (new Rect (Screen.width * (0.28f+0.6582f), Screen.height * 0.11f, Screen.width * 0.058f, Screen.height * 0.1f), "")) {
+				foreach(GameObject page in data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().objects){
+					if(page.GetComponent<ItemVariables>().itemName==item.itemName){
+						if(!gameObject.GetComponent<App_TemplateEditor>().enabled){
+							data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().objects.Remove(page);
+							break;
+						}
+					}
+				}
+				foreach(GameObject page in data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().templateObjects){
+					if(page.GetComponent<ItemVariables>().itemName==item.itemName){
+						if(gameObject.GetComponent<App_TemplateEditor>().enabled){
+							data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().templateObjects.Remove(page);
+							
+							break;
+						}
+					}
+				}
+				foreach(GameObject image in GameObject.FindGameObjectsWithTag("Button")){
+					if(image.GetComponent<ItemVariables>().itemName == item.itemName){
+						Destroy(image);
+					}
+				}
+				GetComponent<ObjectLibrary>().enabled = true;
+				enabled = false;
+			}
 			if (GUI.Button (new Rect (Screen.width * (0.06f+0.6582f), Screen.height * 0.782f, Screen.width * 0.23f, Screen.height * 0.1f), "")) {
 				if (float.TryParse (posXString, out posX) == true &&
 				    float.TryParse (posYString, out posY) == true &&

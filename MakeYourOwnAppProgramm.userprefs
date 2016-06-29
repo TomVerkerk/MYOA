@@ -1,16 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PageSystem\PageTemplate.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ObjectLibrary.cs">
     <Files>
-      <File FileName="Assets\Scripts\PageSystem\PageTemplate.cs" Line="28" Column="1" />
-      <File FileName="Assets\Scripts\PageSystem\ItemVariables.cs" Line="299" Column="7" />
+      <File FileName="Assets\ObjectLibrary.cs" Line="43" Column="100" />
+      <File FileName="Assets\Scripts\UI\App_SelectImage.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PageSystem\PageTemplate.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PageSystem\ItemVariables.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\SelectionGatherer.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\StartUI.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PageSystem\Scroller.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\MainApp.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\Selecter.cs" Line="1" Column="1" />
       <File FileName="..\DannyProject\Assets\GetOnlineData.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\App_Pages.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\App_Pages.cs" Line="44" Column="17" />
       <File FileName="Assets\Scripts\UI\AppChangeButton.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_Button.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_Images.cs" Line="1" Column="1" />
@@ -28,12 +30,12 @@
       <File FileName="Assets\Scripts\UI\NewApp.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\UI.cs" Line="1" Column="1" />
       <File FileName="..\..\Desktop\GameLab-master\Assets\Scripts\misc\RotateObject.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\App_SelectImage.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_Templates.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_TemplateEditor.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MenuBar.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_PageSettings.cs" Line="1" Column="1" />
-      <File FileName="Assets\ObjectLibrary.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\App_NewPage.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\App_Buttons.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

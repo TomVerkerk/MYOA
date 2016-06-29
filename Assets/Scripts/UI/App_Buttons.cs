@@ -47,9 +47,6 @@ public class App_Buttons : MonoBehaviour {
 			foreach(GameObject variables in data.matchingPages.PageArray[data.selectedPage].objects){
 				if(variables.gameObject.GetComponent<ItemVariables>().button == true){
 					if (GUI.Button (new Rect (Screen.width * 0.723f, Screen.height * (0.235f + (0.07f * buttonCount) - sliderIndex), Screen.width * 0.23f, Screen.height * 0.05f), buttonBackground, style)) {
-						if(!first && GetComponent<AppChangeButton>().activeGameObject != null){
-							//GetComponent<AppChangeButton>().activeGameObject.GetComponent<ItemVariables>().buttonVisable = false;
-						}
 						first = false;
 						GetComponent<AppChangeButton>().enabled = false;
 						GetComponent<AppChangeButton>().item = variables.gameObject.GetComponent<ItemVariables>();

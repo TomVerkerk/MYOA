@@ -380,6 +380,7 @@ public class ItemVariables : MonoBehaviour {
 								ui.GetComponent<AppChangeButton>().enabled = false;
 								ui.GetComponent<Database>().selectedPage = buttonGoesToPage;
 								ui.GetComponent<AppChangeImage>().enabled = false;
+								ui.GetComponent<ObjectLibrary>().enabled = true;
 								pages.openPage (buttonGoesToPage);
 							}
 						}

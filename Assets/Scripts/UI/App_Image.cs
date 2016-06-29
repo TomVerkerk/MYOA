@@ -86,18 +86,6 @@ public class App_Image : MonoBehaviour {
 				}
 			}
 			GUI.color = Color.clear;
-			/*if (GUI.Button (new Rect (0, 0, Screen.width * 0.7182f, Screen.height * 0.1f), "")) {
-				if(pageOpened){
-					GetComponent<App_Menu> ().enabled = true;
-					GetComponent<MainApp> ().enabled = false;
-				}
-				else{
-					GetComponent<MainApp> ().enabled = true;
-					GetComponent<App_Menu> ().enabled = false;
-				}
-				Reset();
-				enabled = false;
-			}*/
 			if(GUI.Button(new Rect(Screen.width*0.7182f,Screen.height*0.783f,Screen.width*0.233f,Screen.height*0.1f),"")){
 				if (float.TryParse (posXString, out posX) == true &&
 				    float.TryParse (posYString, out posY) == true &&

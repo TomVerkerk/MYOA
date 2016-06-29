@@ -21,6 +21,7 @@ public class ObjectLibrary : MonoBehaviour {
 	private GUIStyle style;
 	private Database data;
 	private Pages pages;
+	private Texture white;
 
 	void Start(){
 		style = new GUIStyle ();
@@ -31,11 +32,15 @@ public class ObjectLibrary : MonoBehaviour {
 			if(img.name == "ObjectLibrary"){
 				background = img;
 			}
+			if(img.name == "White"){
+				white = img;
+			}
 		}
 	}
 
 	void OnGUI(){
 		if (enabled) {
+			GUI.DrawTexture(new Rect(Screen.width* 0.6582f, 0, Screen.width * 0.3418f, Screen.height), white);
 			GUI.DrawTexture(new Rect(Screen.width* 0.6582f, 0, Screen.width * 0.3418f, Screen.height), background);
 			if (GUI.Button (new Rect (Screen.width* 0.6582f, Screen.height * 0.1f, Screen.width * 0.115f, Screen.height * 0.1f), "",style)) {
 				button = true;
@@ -120,7 +125,6 @@ public class ObjectLibrary : MonoBehaviour {
 							pages.PageArray[data.selectedPage].templateOnly = false;
 						}
 						pages.openPage(data.selectedPage);
-						Debug.Log("saved");
 					}
 					GUI.DrawTexture(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.25f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),frame);
 					count++;

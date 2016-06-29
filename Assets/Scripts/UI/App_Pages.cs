@@ -42,7 +42,6 @@ public class App_Pages : MonoBehaviour {
 	
 	void OnGUI(){
 		if (enabled) {
-			//GUI.DrawTexture(new Rect(Screen.width * 0.6582f, 0, Screen.width * 0.3418f, Screen.height),background);
 			buttonOffset = 0.18f;
 			if(!templateMenuOpened){
 				buttonOffset = 0.257f;
@@ -85,6 +84,10 @@ public class App_Pages : MonoBehaviour {
 							pages.PageArray[page.index].templateOnly = false;
 						}
 						data.selectedPage = page.index;
+						GetComponent<SelectionGatherer>().enabled = false;
+						GetComponent<AppChangeImage>().enabled = false;
+						GetComponent<AppChangeButton>().enabled = false;
+						GetComponent<ObjectLibrary>().enabled = true;
 						pages.openPage(page.index);
 					}
 					GUI.TextArea(new Rect (Screen.width * (0.1648f - (page.pageName.Length * 0.0052f)), Screen.height * (buttonOffset + (0.07f * (buttonCount))), Screen.width * 0.23f, Screen.height * 0.05f), page.pageName, style);

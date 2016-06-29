@@ -120,6 +120,32 @@ public class AppChangeButton : MonoBehaviour {
 				}
 			}
 			GUI.color = Color.clear;
+			if (GUI.Button (new Rect (Screen.width * (0.28f+0.6582f), Screen.height * 0.11f, Screen.width * 0.058f, Screen.height * 0.1f), "")) {
+				foreach(GameObject page in data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().objects){
+					if(page.GetComponent<ItemVariables>().itemName==item.itemName){
+						if(!gameObject.GetComponent<App_TemplateEditor>().enabled){
+							data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().objects.Remove(page);
+							break;
+						}
+					}
+				}
+				foreach(GameObject page in data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().templateObjects){
+					if(page.GetComponent<ItemVariables>().itemName==item.itemName){
+						if(gameObject.GetComponent<App_TemplateEditor>().enabled){
+							data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().templateObjects.Remove(page);
+							
+							break;
+						}
+					}
+				}
+				foreach(GameObject image in GameObject.FindGameObjectsWithTag("Button")){
+					if(image.GetComponent<ItemVariables>().itemName == item.itemName){
+						Destroy(image);
+					}
+				}
+				GetComponent<ObjectLibrary>().enabled = true;
+				enabled = false;
+			}
 			if (GUI.Button (new Rect (Screen.width * (0.06f+0.6582f), Screen.height * 0.87f, Screen.width * 0.23f, Screen.height * 0.1f), "")) {
 				if (float.TryParse (posXString, out posX) == true &&
 					float.TryParse (posYString, out posY) == true &&

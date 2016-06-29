@@ -74,11 +74,14 @@ public class SelectionGatherer : MonoBehaviour {
 			index=0;
 		}
 		if(Event.current.shift&&Input.GetMouseButtonDown(0) && !checking){
-			if(GetComponent<ObjectLibrary>().enabled || enabled){
+			if(GetComponent<ObjectLibrary>().enabled || !enabled){
 			checking = true;
 			enabled = false;
 			clearSelection();
 			StartCoroutine(Check());
+			}
+			else{
+				Debug.Log("Recheck?");
 			}
 		}
 	}
@@ -86,7 +89,7 @@ public class SelectionGatherer : MonoBehaviour {
 	IEnumerator Check()
 	{
 		yield return new WaitForSeconds(0.1f);
-			checkSelection ();
-			checking = false;
+		checkSelection ();
+		checking = false;
 	}
 }

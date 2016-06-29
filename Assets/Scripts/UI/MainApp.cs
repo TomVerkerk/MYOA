@@ -13,6 +13,7 @@ public class MainApp : MonoBehaviour {
 	//private Texture backgroundRight;
 	private GameObject[] Buttons;
 	private bool appOpen = true;
+	private Texture white;
 	//private GameObject[] objects;
 
 	void Start(){
@@ -30,83 +31,48 @@ public class MainApp : MonoBehaviour {
 					background = image;
 				}
 			}
-		/*	if(image.name == "backgroundRight"){
-				backgroundRight = image;
-			}*/
+			if(image.name == "White"){
+				white = image;
+			}
 		}
 	}
 	
 	void OnGUI(){
 		if (enabled) {
+			GUI.DrawTexture(new Rect(0, 0, Screen.width * 0.3418f, Screen.height),white);
 			GUI.DrawTexture(new Rect(0, 0, Screen.width * 0.3418f, Screen.height),background);
-		/*	if(GetComponent<AppChangeImage>().enabled == false && GetComponent<AppChangeButton>().enabled == false){
-				GUI.DrawTexture(new Rect(Screen.width* 0.6582f, 0, Screen.width * 0.3418f, Screen.height), backgroundRight);
-			}*/
 			appTitle = GetComponent<Database> ().AppTitle;
 			GUI.TextArea (new Rect (Screen.width * 0.06f, Screen.height * 0.02f, Screen.width * 0.23f, Screen.height * 0.1f), appTitle, textStyle);
 			GUI.color = Color.clear;
 			if(GUI.Button(new Rect(0,0,Screen.width*0.06f,Screen.height*0.1f),"")){
-				Debug.Log("1");
-		//		if(GetComponent<Load_App>().enabled == false){
-					GetComponent<App_Pages>().enabled = false;
-					GetComponent<App_Texts>().enabled = false;
-					GetComponent<App_NewPage>().enabled = false;
-					GetComponent<App_Menu>().enabled = false;
-					GetComponent<App_Images>().enabled = false;
-					GetComponent<AppChangeImage>().enabled = false;
-					//GetComponent<AppChangeImage>().Reset();
+				GetComponent<App_Pages>().enabled = false;
+				GetComponent<App_Texts>().enabled = false;
+				GetComponent<App_NewPage>().enabled = false;
+				GetComponent<App_Menu>().enabled = false;
+				GetComponent<App_Images>().enabled = false;
+				GetComponent<AppChangeImage>().enabled = false;
 				if(GetComponent<AppChangeButton>().item != null){
 					GetComponent<AppChangeButton>().Reset();
 				}
-					GetComponent<AppChangeButton>().enabled = false;
-					Debug.Log("0");
-					//GetComponent<AppChangeButton>().Reset();
-					GetComponent<App_Templates>().enabled = false;
-					GetComponent<App_Button>().Reset();
-					GetComponent<App_Button>().enabled = false;
-					GetComponent<App_Image>().Reset();
-					GetComponent<App_Image>().enabled = false;
-					GetComponent<Load_App>().enabled = true;
-					GetComponent<Home>().enabled=true;
-					enabled = false;
-					Debug.Log("Check");
-					foreach(GameObject element in GameObject.FindGameObjectsWithTag("Button")){
-						if(element.gameObject!=null){
-							Destroy(element);
-						}
+				GetComponent<AppChangeButton>().enabled = false;
+				GetComponent<App_Templates>().enabled = false;
+				GetComponent<App_Button>().Reset();
+				GetComponent<App_Button>().enabled = false;
+				GetComponent<App_Image>().Reset();
+				GetComponent<App_Image>().enabled = false;
+				GetComponent<Load_App>().enabled = true;
+				GetComponent<Home>().enabled=true;
+				enabled = false;
+				foreach(GameObject element in GameObject.FindGameObjectsWithTag("Button")){
+					if(element.gameObject!=null){
+						Destroy(element);
 					}
-					Destroy(GameObject.FindGameObjectWithTag("Pages"));
-					Destroy(GameObject.FindGameObjectWithTag("ImagePlayer"));
-					if(GameObject.FindGameObjectWithTag("Scroller")!=null){
-						Destroy(GameObject.FindGameObjectWithTag("Scroller"));
-					}
-		//		}
-				/*else{
-					gameObject.GetComponent<Home>().enabled = true;
-					foreach(GameObject element in GameObject.FindGameObjectsWithTag("Button")){
-						if(element.gameObject!=null){
-							Destroy(element);
-						}
-					}
-					Destroy(GameObject.FindGameObjectWithTag("Pages"));
-					Destroy(GameObject.FindGameObjectWithTag("ImagePlayer"));
-					if(GameObject.FindGameObjectWithTag("Scroller")!=null){
-						Destroy(GameObject.FindGameObjectWithTag("Scroller"));
-					}
-					gameObject.GetComponent<App_Pages>().enabled = false;
-					gameObject.GetComponent<App_Images>().enabled = false;
-					gameObject.GetComponent<App_Texts>().enabled = false;
-					gameObject.GetComponent<App_Templates>().enabled = false;
-					if(gameObject.GetComponent<Load_App>().appLoaded == true){
-						gameObject.GetComponent<Load_App>().enabled = true;
-					}
-					else{
-						gameObject.GetComponent<NewApp>().enabled = true;
-					}
-					gameObject.GetComponent<Load_App>().appLoaded = false;
-					gameObject.GetComponent<NewApp>().created = false;
-					enabled = false;
-				}*/
+				}
+				Destroy(GameObject.FindGameObjectWithTag("Pages"));
+				Destroy(GameObject.FindGameObjectWithTag("ImagePlayer"));
+				if(GameObject.FindGameObjectWithTag("Scroller")!=null){
+					Destroy(GameObject.FindGameObjectWithTag("Scroller"));
+				}
 			}
 			if (GUI.Button (new Rect (0, Screen.height * 0.1f, Screen.width * 0.11f, Screen.height * 0.1f), "Pages")) {
 				Buttons = GameObject.FindGameObjectsWithTag("Button");

@@ -24,11 +24,6 @@ public class App_Menu : MonoBehaviour {
 			GUI.DrawTexture(new Rect(0, 0, Screen.width * 0.3418f, Screen.height),background);
 			GUI.TextArea (new Rect (Screen.width * 0.06f, Screen.height * 0.02f, Screen.width * 0.23f, Screen.height * 0.1f), pageName, textStyle);
 			GUI.color = Color.clear;
-			if (GUI.Button (new Rect (Screen.width * 0.289f, 0, Screen.width * 0.05f, Screen.height * 0.1f), "")) {
-				//close page
-				//remove page from PageArray
-				//open App_Pages
-			}
 			if(GUI.Button(new Rect(0,0,Screen.width*0.06f,Screen.height*0.1f),"")){
 				GetComponent<App_Pages>().opened = false;
 				GetComponent<App_Pages>().enabled = true;
