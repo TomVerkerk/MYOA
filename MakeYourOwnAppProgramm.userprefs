@@ -1,15 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PageSystem\ItemVariables.cs">
     <Files>
+      <File FileName="Assets\Scripts\PageSystem\ItemVariables.cs" Line="299" Column="7" />
       <File FileName="Assets\Scripts\UI\SelectionGatherer.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\StartUI.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PageSystem\Scroller.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\MainApp.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\Selecter.cs" Line="77" Column="10" />
+      <File FileName="Assets\Scripts\UI\Selecter.cs" Line="1" Column="1" />
       <File FileName="..\DannyProject\Assets\GetOnlineData.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_Pages.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\AppChangeButton.cs" Line="149" Column="35" />
+      <File FileName="Assets\Scripts\UI\AppChangeButton.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_Button.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_Images.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_Image.cs" Line="1" Column="1" />
@@ -18,9 +19,8 @@
       <File FileName="Assets\Scripts\UI\App_SelectTemplate.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PageSystem\Pages.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_Menu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PageSystem\ItemVariables.cs" Line="315" Column="24" />
       <File FileName="Assets\App_TemplateSettings.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\AppChangeImage.cs" Line="142" Column="39" />
+      <File FileName="Assets\Scripts\UI\AppChangeImage.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\Images.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\Load_App.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Zoom.cs" Line="1" Column="1" />

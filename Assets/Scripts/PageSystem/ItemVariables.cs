@@ -295,9 +295,11 @@ public class ItemVariables : MonoBehaviour {
 						transform.position = new Vector3(position.x - scaleOffset.x,position.y - scaleOffset.y,transform.position.z);
 					}
 				}
-				if(Input.GetMouseButtonUp(0)){
+				if(Input.GetMouseButtonUp(0) && mouseClick){
+						diff = Vector2.zero;
+						movePos = newPos;
 					mouseClick = false;
-					movePos = newPos;
+					Debug.Log("movepos:"+movePos+" diff:"+diff);
 					if(button){
 						buttonTop = newPos.y/100;
 						buttonTopStart = newPos.y/100;
