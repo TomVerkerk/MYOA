@@ -20,15 +20,15 @@ public class AppChangeImage : MonoBehaviour {
 	private Texture visibleTex;
 	private Texture notVisibleTex;
 	
-	private float posX = 0;
-	private string posXString = "-1";
-	private float posY = 0;
-	private string posYString = "-1";
+	public float posX = 0;
+	public string posXString = "-1";
+	public float posY = 0;
+	public string posYString = "-1";
 	
-	private float scaleX = 0;
-	private string scaleXString = "-1";
-	private float scaleY = 0;
-	private string scaleYString = "-1";
+	public float scaleX = 0;
+	public string scaleXString = "-1";
+	public float scaleY = 0;
+	public string scaleYString = "-1";
 	
 	private string imageString = "start";
 	
@@ -164,7 +164,7 @@ public class AppChangeImage : MonoBehaviour {
 						but.GetComponent<ItemVariables>().selected = false;
 						but.GetComponent<ItemVariables>().gathered = false;
 					}
-					GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().CheckUse();
+					//GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().CheckUse();
 					GetComponent<ObjectLibrary>().enabled = true;
 					Reset();
 					enabled = false;

@@ -56,6 +56,14 @@ public class ItemVariables : MonoBehaviour {
 	private Texture selectedImage;
 	private SelectionGatherer gatherer;
 	public bool gathered = false;
+	private Vector2 mousestart;
+	private bool click = false;
+	private Vector2 diff = Vector2.zero;
+	private Vector2 save = Vector2.zero;
+	private Vector2 movePos = Vector2.zero;
+	private bool mouseClick = false;
+	private Vector2 newPos= Vector2.zero;
+	private Vector3 scaleOffset = Vector3.zero;
 
 	void Start(){
 		buttonStyle = new GUIStyle ();
@@ -169,12 +177,14 @@ public class ItemVariables : MonoBehaviour {
 						if(obj.GetComponent<ItemVariables>().itemName == itemName){
 							ui.GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
 							ui.GetComponent<AppChangeImage>().itemObject = obj;
+							movePos = new Vector2(obj.GetComponent<ItemVariables>().position.x/11.25f*100,-obj.GetComponent<ItemVariables>().position.y/20*100);
 						}
 					}
 					foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].templateObjects){
 						if(obj.GetComponent<ItemVariables>().itemName == itemName){
 							ui.GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
 							ui.GetComponent<AppChangeImage>().itemObject = obj;
+							movePos = new Vector2(obj.GetComponent<ItemVariables>().position.x/11.25f*100,-obj.GetComponent<ItemVariables>().position.y/20*100);
 						}
 					}
 					ui.GetComponent<AppChangeImage> ().pageOpened = true;
@@ -189,13 +199,14 @@ public class ItemVariables : MonoBehaviour {
 						if(obj.GetComponent<ItemVariables>().itemName == itemName){
 							ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
 							ui.GetComponent<AppChangeButton>().itemObject = obj;
+							movePos = new Vector2(buttonLeft*100,buttonTop*100);
 						}
 					}
 					foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].templateObjects){
 						if(obj.GetComponent<ItemVariables>().itemName == itemName){
 							ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
 							ui.GetComponent<AppChangeButton>().itemObject = obj;
-							break;
+							movePos = new Vector2(buttonLeft*100,buttonTop*100);
 						}
 					}
 					ui.GetComponent<AppChangeButton>().Reset();
@@ -211,12 +222,14 @@ public class ItemVariables : MonoBehaviour {
 						if(obj.GetComponent<ItemVariables>().itemName == itemName){
 							ui.GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
 							ui.GetComponent<AppChangeImage>().itemObject = obj;
+							movePos = new Vector2(obj.GetComponent<ItemVariables>().position.x/11.25f*100,-obj.GetComponent<ItemVariables>().position.y/20*100);
 						}
 					}
 					foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].templateObjects){
 						if(obj.GetComponent<ItemVariables>().itemName == itemName){
 							ui.GetComponent<AppChangeImage> ().item =obj.GetComponent<ItemVariables>();
 							ui.GetComponent<AppChangeImage>().itemObject = obj;
+							movePos = new Vector2(obj.GetComponent<ItemVariables>().position.x/11.25f*100,-obj.GetComponent<ItemVariables>().position.y/20*100);
 						}
 					}
 					ui.GetComponent<AppChangeImage> ().pageOpened = true;
@@ -231,13 +244,14 @@ public class ItemVariables : MonoBehaviour {
 						if(obj.GetComponent<ItemVariables>().itemName == itemName){
 							ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
 							ui.GetComponent<AppChangeButton>().itemObject = obj;
+							movePos = new Vector2(buttonLeft*100,buttonTop*100);
 						}
 					}
 					foreach(GameObject obj in pages.PageArray[ui.GetComponent<Database>().selectedPage].templateObjects){
 						if(obj.GetComponent<ItemVariables>().itemName == itemName){
 							ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
 							ui.GetComponent<AppChangeButton>().itemObject = obj;
-							break;
+							movePos = new Vector2(buttonLeft*100,buttonTop*100);
 						}
 					}
 					ui.GetComponent<AppChangeButton>().Reset();
@@ -250,7 +264,53 @@ public class ItemVariables : MonoBehaviour {
 
 	void OnGUI(){
 		if (selected && imagePlayer.opened==false) {
-			GUI.DrawTexture(new Rect ((Screen.width * screenOffset) + screenRes.x*buttonLeft, screenRes.y*buttonTop, screenRes.x*buttonWidth, screenRes.y*buttonHeight),selectedImage,ScaleMode.StretchToFill);
+			if(Event.current.shift){
+				if(Input.GetMouseButtonDown(0)&& Input.mousePosition.x>(Screen.width*screenOffset) && Input.mousePosition.x<Screen.width*(screenOffset)+screenRes.x && !mouseClick){
+					mousestart = new Vector2(Input.mousePosition.x,Input.mousePosition.y);
+					mouseClick = true;
+				}
+				else if(Input.GetMouseButton(0) && Input.mousePosition.x>(Screen.width*screenOffset) && Input.mousePosition.x<Screen.width*(screenOffset)+screenRes.x && mouseClick){
+					diff = mousestart - new Vector2(Input.mousePosition.x,Input.mousePosition.y);
+					diff = new Vector2((diff.x/screenRes.x)*-100,(diff.y/screenRes.y)*100);
+
+					if(button){
+						newPos = (movePos + diff);
+						ui.GetComponent<AppChangeButton>().posXString = newPos.x.ToString();
+						ui.GetComponent<AppChangeButton>().posX = newPos.x;
+						ui.GetComponent<AppChangeButton>().posY = newPos.y;
+						ui.GetComponent<AppChangeButton>().posYString = newPos.y.ToString();
+						buttonTop = newPos.y/100;
+						buttonTopStart = newPos.y/100;
+						buttonLeft = newPos.x/100;
+					}
+					else if(image){
+						newPos = (movePos + diff);
+						ui.GetComponent<AppChangeImage>().posXString = newPos.x.ToString();
+						ui.GetComponent<AppChangeImage>().posX = newPos.x;
+						ui.GetComponent<AppChangeImage>().posY = newPos.y;
+						ui.GetComponent<AppChangeImage>().posYString = newPos.y.ToString();
+						position.x = 0.1125f*newPos.x;
+						position.y = -0.2f*newPos.y;
+						scaleOffset = new Vector3(5.625f - scale.x/2,-10 + scale.y/2);
+						transform.position = new Vector3(position.x - scaleOffset.x,position.y - scaleOffset.y,transform.position.z);
+					}
+				}
+				if(Input.GetMouseButtonUp(0)){
+					mouseClick = false;
+					movePos = newPos;
+					if(button){
+						buttonTop = newPos.y/100;
+						buttonTopStart = newPos.y/100;
+						buttonLeft = newPos.x/100;
+					}
+				}
+			}
+			if(button){
+				GUI.DrawTexture(new Rect ((Screen.width * screenOffset) + (screenRes.x*buttonLeft), screenRes.y*buttonTop, screenRes.x*buttonWidth, screenRes.y*buttonHeight),selectedImage,ScaleMode.StretchToFill);
+			}
+			if(image){
+				GUI.DrawTexture(new Rect ((Screen.width * screenOffset) + (screenRes.x/100*(movePos.x+diff.x)), screenRes.y/100*(movePos.y+diff.y), screenRes.x*(scale.x/11.25f), screenRes.y*(scale.y/20)),selectedImage,ScaleMode.StretchToFill);
+			}
 		}
 		if (!buttonVisable) {
 			GUI.color = Color.clear;
@@ -267,7 +327,8 @@ public class ItemVariables : MonoBehaviour {
 					if(shift){
 						if(!templateItem && !ui.GetComponent<App_TemplateEditor>().enabled||
 						   templateItem && ui.GetComponent<App_TemplateEditor>().enabled){
-							if(!gathered){
+							if(!gathered && ui.GetComponent<ObjectLibrary>().enabled ||
+							   !gathered && gatherer.enabled){
 								gatherer.addToSelection(this);
 								gathered = true;
 							}

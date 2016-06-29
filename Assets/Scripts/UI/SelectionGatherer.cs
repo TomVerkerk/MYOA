@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class SelectionGatherer : MonoBehaviour {
 
 	public List<ItemVariables> selections = new List<ItemVariables>();
-	private bool enabled = false;
+	public bool enabled = false;
 	private bool checking = false;
 	private Images images;
 	private Texture background;
@@ -74,8 +74,12 @@ public class SelectionGatherer : MonoBehaviour {
 			index=0;
 		}
 		if(Event.current.shift&&Input.GetMouseButtonDown(0) && !checking){
+			if(GetComponent<ObjectLibrary>().enabled || enabled){
 			checking = true;
+			enabled = false;
+			clearSelection();
 			StartCoroutine(Check());
+			}
 		}
 	}
 

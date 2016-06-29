@@ -19,15 +19,15 @@ public class AppChangeButton : MonoBehaviour {
 	private Texture usingTex;
 	private Texture inTemplateImg;
 
-	private float posX = 0;
-	private string posXString = "-1";
-	private float posY = 0;
-	private string posYString = "-1";
+	public float posX = 0;
+	public string posXString = "-1";
+	public float posY = 0;
+	public string posYString = "-1";
 
-	private float scaleX = 0;
-	private string scaleXString = "-1";
-	private float scaleY = 0;
-	private string scaleYString = "-1";
+	public float scaleX = 0;
+	public string scaleXString = "-1";
+	public float scaleY = 0;
+	public string scaleYString = "-1";
 
 	private string imageString = "start";
 
@@ -158,9 +158,9 @@ public class AppChangeButton : MonoBehaviour {
 					activeGameObject.buttonVisable = visible;
 					itemObject.gameObject.name = buttonName;
 					activeGameObject.GetComponent<ItemVariables>().selected = false;
-					if(GameObject.FindGameObjectWithTag("Scroller")!=null){
+					/*if(GameObject.FindGameObjectWithTag("Scroller")!=null){
 						GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().CheckUse();
-					}
+					}*/
 					Reset();
 					GetComponent<ObjectLibrary>().enabled = true;
 					enabled = false;
