@@ -46,13 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\App_TemplateSettings.cs" />
-     <Compile Include="Assets\ObjectLibrary.cs" />
+     <Compile Include="Assets\Scripts\App_TemplateSettings.cs" />
      <Compile Include="Assets\Scripts\CrisisCheck.cs" />
      <Compile Include="Assets\Scripts\ImagePlayer.cs" />
      <Compile Include="Assets\Scripts\Log in\Alle_Medewerkers.cs" />
      <Compile Include="Assets\Scripts\Log in\XmlFile.cs" />
      <Compile Include="Assets\Scripts\MenuBar.cs" />
+     <Compile Include="Assets\Scripts\ObjectLibrary.cs" />
      <Compile Include="Assets\Scripts\PageSystem\ItemVariables.cs" />
      <Compile Include="Assets\Scripts\PageSystem\PageTemplate.cs" />
      <Compile Include="Assets\Scripts\PageSystem\Pages.cs" />

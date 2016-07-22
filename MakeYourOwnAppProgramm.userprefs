@@ -1,35 +1,34 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ObjectLibrary.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PageSystem\ItemVariables.cs">
     <Files>
-      <File FileName="Assets\ObjectLibrary.cs" Line="43" Column="100" />
+      <File FileName="Assets\Scripts\UI\AppChangeButton.cs" Line="87" Column="63" />
+      <File FileName="Assets\Scripts\UI\AppChangeSlider.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\AppChangeImage.cs" Line="62" Column="15" />
+      <File FileName="Assets\Scripts\ObjectLibrary.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_SelectImage.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PageSystem\PageTemplate.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PageSystem\ItemVariables.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PageSystem\ItemVariables.cs" Line="245" Column="24" />
       <File FileName="Assets\Scripts\UI\SelectionGatherer.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\StartUI.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PageSystem\Scroller.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\MainApp.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\Selecter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\Selecter.cs" Line="110" Column="37" />
       <File FileName="..\DannyProject\Assets\GetOnlineData.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\App_Pages.cs" Line="44" Column="17" />
-      <File FileName="Assets\Scripts\UI\AppChangeButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\App_Pages.cs" Line="50" Column="37" />
       <File FileName="Assets\Scripts\UI\App_Button.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\App_Images.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\App_Images.cs" Line="75" Column="40" />
       <File FileName="Assets\Scripts\UI\App_Image.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ImagePlayer.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_SelectTemplate.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PageSystem\Pages.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\App_Menu.cs" Line="1" Column="1" />
-      <File FileName="Assets\App_TemplateSettings.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UI\AppChangeImage.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UI\App_Menu.cs" Line="37" Column="36" />
       <File FileName="Assets\Scripts\UI\Images.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\Load_App.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Zoom.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\StartScreen.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\NewApp.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\UI.cs" Line="1" Column="1" />
-      <File FileName="..\..\Desktop\GameLab-master\Assets\Scripts\misc\RotateObject.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_Templates.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UI\App_TemplateEditor.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MenuBar.cs" Line="1" Column="1" />

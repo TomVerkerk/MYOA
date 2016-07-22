@@ -34,11 +34,26 @@ public class AppChangeButton : MonoBehaviour {
 	private int toPage;
 	private string toPageString = "-2";
 
+	public Vector2 movePos = Vector2.zero;
+	private bool mouseClick = false;
+	private Vector2 newPos= Vector2.zero;
+	private Vector2 mousestart;
+	private bool click = false;
+	private Vector2 diff = Vector2.zero;
+	private float screenOffset = 0.3418f;
+	private Texture selectedImage;
+	private Vector3 scaleOffset;
+	private Vector2 screenRes;
+	//private ImagePlayer imagePlayer;
+
 
 	void Start(){
+		//imagePlayer = GameObject.FindGameObjectWithTag ("ImagePlayer").GetComponent<ImagePlayer> ();
 		textStyle = new GUIStyle ();
 		images = GetComponent<Images> ();
 		data = GetComponent<Database> ();
+		screenRes.x = Screen.width * 0.3164f;
+		screenRes.y = Screen.height;
 		foreach (Texture image in images.images) {
 			if(image.name == "AppChangeButton"){
 				background = image;
@@ -48,6 +63,9 @@ public class AppChangeButton : MonoBehaviour {
 			}
 			if(image.name == "notVisibleTex"){
 				notVisibleTex = image;
+			}
+			if(image.name == "SelectedImage"){
+				selectedImage = image;
 			}
 		}
 	}
@@ -66,7 +84,7 @@ public class AppChangeButton : MonoBehaviour {
 			} else {
 				usingTex = notVisibleTex;
 			}
-			activeGameObject = GameObject.Find (buttonName + "(Clone)").GetComponent<ItemVariables> ();
+			activeGameObject = itemObject.GetComponent<ItemVariables>();
 			activeGameObject.buttonVisable = visible;
 			if (item.buttonTexture != null) {
 				imageString = item.buttonTexture.name;
@@ -78,6 +96,7 @@ public class AppChangeButton : MonoBehaviour {
 
 	void OnGUI(){
 		if (enabled) {
+			moveButton();
 			if (posXString == "-1" ||
 			    posYString == "-1" ||
 			    scaleXString == "-1" ||
@@ -152,7 +171,7 @@ public class AppChangeButton : MonoBehaviour {
 					float.TryParse (scaleXString, out scaleX) == true &&
 					float.TryParse (scaleYString, out scaleY) == true &&
 				    int.TryParse(toPageString, out toPage) == true) {
-					activeGameObject = GameObject.Find (item.itemName+"(Clone)").GetComponent<ItemVariables> ();
+					activeGameObject = itemObject.GetComponent<ItemVariables>();
 					foreach(Texture image in images.images){
 						if(image.name == imageString){
 							item.buttonTexture = image;
@@ -184,9 +203,6 @@ public class AppChangeButton : MonoBehaviour {
 					activeGameObject.buttonVisable = visible;
 					itemObject.gameObject.name = buttonName;
 					activeGameObject.GetComponent<ItemVariables>().selected = false;
-					/*if(GameObject.FindGameObjectWithTag("Scroller")!=null){
-						GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().CheckUse();
-					}*/
 					Reset();
 					GetComponent<ObjectLibrary>().enabled = true;
 					enabled = false;
@@ -195,4 +211,46 @@ public class AppChangeButton : MonoBehaviour {
 		}
 	}
 
+	void moveButton(){
+
+		if (Event.current.shift) {
+			Debug.Log ("1");
+			if (Input.GetMouseButton (0) && Input.mousePosition.x>(Screen.width*screenOffset) && Input.mousePosition.x<Screen.width*(screenOffset)+screenRes.x) {
+				Debug.Log ("2");
+				if (!mouseClick) {
+					Debug.Log ("3");
+					mousestart = new Vector2(Input.mousePosition.x,Input.mousePosition.y);
+					mouseClick = true;
+				}
+				else if(mouseClick){
+					diff = mousestart - new Vector2(Input.mousePosition.x,Input.mousePosition.y);
+					diff = new Vector2((diff.x/screenRes.x)*-100,(diff.y/screenRes.y)*100);
+					newPos = (movePos + diff);
+					posXString = newPos.x.ToString();
+					posX = newPos.x;
+					posY = newPos.y;
+					posYString = newPos.y.ToString();
+					item.buttonTop = newPos.y/100;
+					item.buttonTopStart = newPos.y/100;
+					item.buttonLeft = newPos.x/100;
+					itemObject.GetComponent<ItemVariables>().buttonTop = newPos.y/100;
+					itemObject.GetComponent<ItemVariables>().buttonTopStart = newPos.y/100;
+					itemObject.GetComponent<ItemVariables>().buttonLeft = newPos.x/100;
+				}
+			}
+			if(Input.GetMouseButtonUp(0) && mouseClick){
+				diff = Vector2.zero;
+				movePos = newPos;
+				mouseClick = false;
+				item.buttonTop = newPos.y/100;
+				item.buttonTopStart = newPos.y/100;
+				item.buttonLeft = newPos.x/100;
+				itemObject.GetComponent<ItemVariables>().buttonTop = newPos.y/100;
+				itemObject.GetComponent<ItemVariables>().buttonTopStart = newPos.y/100;
+				itemObject.GetComponent<ItemVariables>().buttonLeft = newPos.x/100;
+			}
+		}
+		Debug.Log ("0");
+		GUI.DrawTexture(new Rect ((Screen.width * screenOffset) + (screenRes.x*item.buttonLeft), screenRes.y*item.buttonTop, screenRes.x*item.buttonWidth, screenRes.y*item.buttonHeight),selectedImage,ScaleMode.StretchToFill);
+	}
 }

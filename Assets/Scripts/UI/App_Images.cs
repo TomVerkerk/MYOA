@@ -71,7 +71,7 @@ public class App_Images : MonoBehaviour {
 							GetComponent<App_Image>().enabled = false;
 							GetComponent<AppChangeImage> ().enabled = false;
 							GetComponent<AppChangeImage> ().item = variables.gameObject.GetComponent<ItemVariables> ();
-							GetComponent<AppChangeImage>().itemObject = variables;
+							//GetComponent<AppChangeImage>().itemObject = variables;
 							GetComponent<AppChangeImage> ().pageOpened = true;
 							GetComponent<AppChangeImage> ().Reset ();
 							GetComponent<AppChangeImage> ().enabled = true;

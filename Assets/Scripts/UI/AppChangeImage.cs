@@ -31,12 +31,27 @@ public class AppChangeImage : MonoBehaviour {
 	public string scaleYString = "-1";
 	
 	private string imageString = "start";
+
+	private Vector2 mousepos;
+
+	public Vector2 movePos = Vector2.zero;
+	private bool mouseClick = false;
+	private Vector2 newPos= Vector2.zero;
+	private Vector2 mousestart;
+	private bool click = false;
+	private Vector2 diff = Vector2.zero;
+	private float screenOffset = 0.3418f;
+	private Texture selectedImage;
+	private Vector2 screenRes;
+
 	
 	
 	void Start(){
 		textStyle = new GUIStyle ();
 		images = GetComponent<Images> ();
 		data = GetComponent<Database> ();
+		screenRes.x = Screen.width * 0.3164f;
+		screenRes.y = Screen.height;
 		foreach (Texture image in images.images) {
 			if(image.name == "AppChangeImage"){
 				background = image;
@@ -46,6 +61,9 @@ public class AppChangeImage : MonoBehaviour {
 			}
 			if(image.name == "notVisibleTex"){
 				notVisibleTex = image;
+			}
+			if(image.name == "SelectedImage"){
+				selectedImage = image;
 			}
 		}
 	}
@@ -71,6 +89,7 @@ public class AppChangeImage : MonoBehaviour {
 	
 	void OnGUI(){
 		if (enabled) {
+			moveImage();
 			GUI.DrawTexture(new Rect(Screen.width* 0.6582f, 0, Screen.width * 0.3418f, Screen.height), background);
 			textStyle.fontSize = (42*Screen.width)/1920;
 			ImageName = GUI.TextArea (new Rect (Screen.width * (0.02f+0.6582f), Screen.height * 0.195f, Screen.width * 0.23f, Screen.height * 0.1f), ImageName, textStyle);
@@ -121,11 +140,9 @@ public class AppChangeImage : MonoBehaviour {
 				    float.TryParse (posYString, out posY) == true &&
 				    float.TryParse (scaleXString, out scaleX) == true &&
 				    float.TryParse (scaleYString, out scaleY) == true) {
-//					Debug.Log(""+item.itemName);
 					activeGameObject = GameObject.Find (item.itemName+"(Clone)").GetComponent<ItemVariables> ();
 					foreach(Texture image in images.images){
 						if(image.name == imageString){
-//							Debug.Log("Image found");
 							item.imageMaterial = image;
 							activeGameObject.imageMaterial = image;
 							activeGameObject.gameObject.renderer.material.mainTexture = image;
@@ -169,7 +186,6 @@ public class AppChangeImage : MonoBehaviour {
 						but.GetComponent<ItemVariables>().selected = false;
 						but.GetComponent<ItemVariables>().gathered = false;
 					}
-					//GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().CheckUse();
 					GetComponent<ObjectLibrary>().enabled = true;
 					Reset();
 					enabled = false;
@@ -177,5 +193,39 @@ public class AppChangeImage : MonoBehaviour {
 			}
 		}
 	}
-	
+
+	void moveImage(){
+		if (Event.current.shift) {
+			if (Input.GetMouseButton (0) && Input.mousePosition.x>(Screen.width*screenOffset) && Input.mousePosition.x<Screen.width*(screenOffset)+screenRes.x) {
+				if (!mouseClick) {
+					mousestart = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+					mouseClick = true;
+				} 
+				else if (mouseClick){
+					diff = mousestart - new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+					diff = new Vector2 ((diff.x / screenRes.x) * -100, (diff.y / screenRes.y) * 100);
+					newPos = (movePos + diff);
+					posXString = newPos.x.ToString ();
+					posX = newPos.x;
+					posY = newPos.y;
+					posYString = newPos.y.ToString ();
+					item.position.x = 0.1125f * newPos.x;
+					item.position.y = -0.2f * newPos.y;
+					scaleOffset = new Vector3 (5.625f - item.scale.x / 2, -10 + item.scale.y / 2);
+					itemObject.transform.position = new Vector3 (item.position.x - scaleOffset.x, item.position.y - scaleOffset.y, itemObject.transform.position.z);
+				}
+			} 
+			if (Input.GetMouseButtonUp (0) && mouseClick) {
+				diff = Vector2.zero;
+				movePos = newPos;
+				mouseClick = false;
+			}
+		}
+		GUI.DrawTexture(new Rect ((Screen.width * screenOffset) + (screenRes.x/100*(movePos.x+diff.x)), screenRes.y/100*(movePos.y+diff.y), screenRes.x*(item.scale.x/11.25f), screenRes.y*(item.scale.y/20)),selectedImage,ScaleMode.StretchToFill);
+	}
+
+	void scaleImage(){
+
+	}
+
 }
