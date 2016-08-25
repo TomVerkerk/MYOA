@@ -58,7 +58,7 @@ public class CrisisCheck : MonoBehaviour {
 		}
 		if(beoordeeling){
 			button = GameObject.FindGameObjectWithTag ("BeoordeelButton");
-			button.gameObject.renderer.enabled = false;
+			button.gameObject.GetComponent<Renderer>().enabled = false;
 			float x = -4.4f;
 			float y = -0;
 			float z = -1;
@@ -190,7 +190,7 @@ public class CrisisCheck : MonoBehaviour {
 				check5.SetActive(false);
 				rating=1;
 				if(!rated){
-					button.gameObject.renderer.enabled = true;
+					button.gameObject.GetComponent<Renderer>().enabled = true;
 				}
 				rated=true;
 			}
@@ -202,7 +202,7 @@ public class CrisisCheck : MonoBehaviour {
 				check5.SetActive(false);
 				rating=2;
 				if(!rated){
-					button.gameObject.renderer.enabled = true;
+					button.gameObject.GetComponent<Renderer>().enabled = true;
 				}
 				rated=true;
 			}
@@ -214,7 +214,7 @@ public class CrisisCheck : MonoBehaviour {
 				check5.SetActive(false);
 				rating=3;
 				if(!rated){
-					button.gameObject.renderer.enabled = true;
+					button.gameObject.GetComponent<Renderer>().enabled = true;
 				}
 				rated=true;
 			}
@@ -226,7 +226,7 @@ public class CrisisCheck : MonoBehaviour {
 				check5.SetActive(false);
 				rating=4;
 				if(!rated){
-					button.gameObject.renderer.enabled = true;
+					button.gameObject.GetComponent<Renderer>().enabled = true;
 				}
 				rated=true;
 			}
@@ -238,7 +238,7 @@ public class CrisisCheck : MonoBehaviour {
 				check5.SetActive(true);
 				rating=5;
 				if(!rated){
-					button.gameObject.renderer.enabled = true;
+					button.gameObject.GetComponent<Renderer>().enabled = true;
 				}
 				rated=true;
 			}

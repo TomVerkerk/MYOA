@@ -145,7 +145,7 @@ public class AppChangeImage : MonoBehaviour {
 						if(image.name == imageString){
 							item.imageMaterial = image;
 							activeGameObject.imageMaterial = image;
-							activeGameObject.gameObject.renderer.material.mainTexture = image;
+							activeGameObject.gameObject.GetComponent<Renderer>().material.mainTexture = image;
 						}
 					}
 					posX = float.Parse (posXString);

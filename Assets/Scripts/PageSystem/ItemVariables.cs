@@ -84,13 +84,13 @@ public class ItemVariables : MonoBehaviour {
 		}
 		pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
 		if (slider) {
-			gameObject.renderer.material.mainTexture = GetComponent<Slider>().images[0];
+			gameObject.GetComponent<Renderer>().material.mainTexture = GetComponent<Slider>().images[0];
 		}
 		else if (image) {
-			gameObject.renderer.material.mainTexture = imageMaterial;
+			gameObject.GetComponent<Renderer>().material.mainTexture = imageMaterial;
 		}
 		else {
-			gameObject.renderer.enabled = false;
+			gameObject.GetComponent<Renderer>().enabled = false;
 		}
 		if (imageTiling == Vector2.zero) {
 			imageTiling = new Vector2(1,1);
@@ -100,8 +100,8 @@ public class ItemVariables : MonoBehaviour {
 		} else {
 			gameObject.GetComponent<BoxCollider>().enabled=false;
 		}
-		gameObject.renderer.material.mainTextureScale = imageTiling;
-		gameObject.renderer.material.mainTextureOffset = imageOffset;
+		gameObject.GetComponent<Renderer>().material.mainTextureScale = imageTiling;
+		gameObject.GetComponent<Renderer>().material.mainTextureOffset = imageOffset;
 		Images images = ui.GetComponent<Images>();
 		foreach(Texture tex in images.images){
 			if(tex.name == "defaultButton"){
@@ -306,6 +306,7 @@ public class ItemVariables : MonoBehaviour {
 									Destroy(GameObject.FindGameObjectWithTag("Scroller"));
 								}
 								GameObject.FindGameObjectWithTag("ImagePlayer").GetComponent<ImagePlayer>().closeImage();
+								Destroy(GameObject.FindGameObjectWithTag("ImagePlayer"));
 								ui.GetComponent<AppChangeButton>().enabled = false;
 								ui.GetComponent<Database>().selectedPage = buttonGoesToPage;
 								ui.GetComponent<AppChangeImage>().enabled = false;
