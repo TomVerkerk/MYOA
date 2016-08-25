@@ -5,7 +5,7 @@ public class MainApp : MonoBehaviour {
 	
 	public bool enabled = false;
 	private string appTitle;
-	private bool templateOnly = false;
+	public bool templateOnly = false;
 	public Texture background;
 	public GUIStyle textStyle;
 	private Database data;
@@ -74,16 +74,12 @@ public class MainApp : MonoBehaviour {
 					Destroy(GameObject.FindGameObjectWithTag("Scroller"));
 				}
 			}
-			if (GUI.Button (new Rect (0, Screen.height * 0.1f, Screen.width * 0.11f, Screen.height * 0.1f), "Pages")) {
-				Buttons = GameObject.FindGameObjectsWithTag("Button");
-				foreach(GameObject obj in Buttons){
-					obj.GetComponent<ItemVariables>().selected = false;
-					Destroy(obj);
-				}
+			if (GUI.Button (new Rect (0, Screen.height * 0.1f, Screen.width * 0.11f, Screen.height * 0.1f), "Pages")&&templateOnly) {
 				Destroy(GameObject.FindGameObjectWithTag("Scroller"));
 				appOpen = false;
 				GetComponent<App_Pages>().templateMenuOpened = false;
 				if(!appOpen){
+					//GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>().closePage(data.selectedPage);
 					GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>().PageArray[data.selectedPage].templateOnly = false;
 					GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>().openPage(data.selectedPage);
 				}
@@ -92,6 +88,7 @@ public class MainApp : MonoBehaviour {
 					obj.GetComponent<ItemVariables>().selected = false;
 				}
 				templateOnly = false;
+				Destroy(GameObject.FindGameObjectWithTag("ImagePlayer"));
 			//	GetComponent<App_Pages>().enabled = true;
 				GetComponent<NewApp>().enabled = false;
 				GetComponent<ObjectLibrary>().enabled = true;
@@ -135,20 +132,27 @@ public class MainApp : MonoBehaviour {
 			}*/
 
 
-		if (GUI.Button (new Rect (Screen.width * 0.115f, Screen.height * 0.1f, Screen.width * 0.11f, Screen.height * 0.1f), "Template")) {
-				Buttons = GameObject.FindGameObjectsWithTag("Button");
+		if (GUI.Button (new Rect (Screen.width * 0.115f, Screen.height * 0.1f, Screen.width * 0.11f, Screen.height * 0.1f), "Template")&&!templateOnly) {
+			/*	Buttons = GameObject.FindGameObjectsWithTag("Button");
 				foreach(GameObject obj in Buttons){
+					Debug.Log(""+obj);
 					obj.GetComponent<ItemVariables>().selected = false;
 					Destroy(obj);
-				}
-				Destroy(GameObject.FindGameObjectWithTag("Scroller"));
+				}*/
+			//	Destroy(GameObject.FindGameObjectWithTag("Scroller"));
 				appOpen = false;
 				GetComponent<App_Pages>().templateMenuOpened = true;
 				if(!appOpen){
+					GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>().closePage(data.selectedPage);
 					GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>().PageArray[data.selectedPage].templateOnly = true;
 					GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>().openPage(data.selectedPage);
 					appOpen = true;
 				}
+				Buttons = GameObject.FindGameObjectsWithTag("Button");
+				foreach(GameObject obj in Buttons){
+					obj.GetComponent<ItemVariables>().selected = false;
+				}
+				Destroy(GameObject.FindGameObjectWithTag("ImagePlayer"));
 				templateOnly = true;
 				GetComponent<App_TemplateEditor>().enabled = true;
 				GetComponent<ObjectLibrary>().enabled = true;

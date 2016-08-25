@@ -15,14 +15,12 @@ public class Load_App : MonoBehaviour {
 	public Pages selectedPages;
 	public Database selectedDatabase = null;
 	private Pages opened;
-	public bool appLoaded = false;
+	//public bool appLoaded = false;
 	private GameObject[] Buttons;
 	private GameObject App;
 	private Images images;
-	private bool imagePlayerSpawned = false;
 	private float sliderIndex = 0;
-
-	// Use this for initialization
+	
 	void Start () {
 		images = gameObject.GetComponent<Images> ();
 		foreach (Texture image in images.images) {
@@ -36,6 +34,12 @@ public class Load_App : MonoBehaviour {
 		database = gameObject.GetComponent<Database> ();
 		style.fontSize = (55*Screen.width)/1920;
 		selectedDatabase  = null;
+	}
+
+	public void Reset(){
+		selectedDatabase = null;
+		selectedPages = null;
+		buttonCount = 0;
 	}
 
 	void OnGUI () {
@@ -58,46 +62,46 @@ public class Load_App : MonoBehaviour {
 					buttonCount++;
 				}
 			}
-
 			buttonCount = 0;
 			if (GUI.Button (new Rect (Screen.width * 0.723f, Screen.height * 0.9f, Screen.width * 0.23f, Screen.height * 0.05f), buttonBackground, style)) {
-				if(selectedPages != null && selectedDatabase != null){
-					if(appLoaded){
-						Buttons = GameObject.FindGameObjectsWithTag("Button");
-						foreach(GameObject buttonObject in Buttons){
-							if(buttonObject!=null){
-								Destroy(buttonObject);
-							}
-						}
-						Destroy(GameObject.FindGameObjectWithTag("Pages"));
-						if(GameObject.FindGameObjectWithTag("Scroller")!=null){
-							Destroy(GameObject.FindGameObjectWithTag("Scroller"));
-						}
-					}
-					App = Instantiate(selectedPages) as GameObject;
-					if(selectedPages.PageArray.Count != 0){
-						selectedPages.openPage(selectedPages.startPage);
-					}
-					if(GameObject.FindGameObjectWithTag("ImagePlayer")==null){
-						Instantiate(Resources.Load ("ImagePlayer") as GameObject);
-					}
-					database.AppTitle = selectedDatabase.AppTitle;
-					database.databaseObject = selectedDatabase.databaseObject;
-					database.matchingPages = selectedPages;
-					database.OS = selectedDatabase.OS;
-					database.selectedPage = 0;
-					appLoaded = true;
-					GetComponent<Home>().enabled = false;
-					GetComponent<MainApp>().enabled = true;
-					GetComponent<Selecter>().enabled = true;
-					GetComponent<ObjectLibrary>().enabled = true;
-					GetComponent<App_Pages>().enabled=true;
-					GetComponent<App_TemplateEditor>().enabled = false;
-					GetComponent<App_Pages>().templateMenuOpened = false;
-					enabled = false;
-				}
+				LoadApp();
 			}
 			GUI.TextArea(new Rect (Screen.width * 0.785f, Screen.height * 0.9f, Screen.width * 0.23f, Screen.height * 0.06f),"Load", style);
+		}
+	}
+
+	void LoadApp(){
+		if(selectedPages != null && selectedDatabase != null){
+			//if(appLoaded){
+			/*	Buttons = GameObject.FindGameObjectsWithTag("Button");
+				foreach(GameObject buttonObject in Buttons){
+					if(buttonObject!=null){
+						Destroy(buttonObject);
+					}
+				}
+				Destroy(GameObject.FindGameObjectWithTag("Pages"));
+				if(GameObject.FindGameObjectWithTag("Scroller")!=null){
+					Destroy(GameObject.FindGameObjectWithTag("Scroller"));
+				}*/
+			//}
+			App = Instantiate(selectedPages) as GameObject;
+			if(selectedPages.PageArray.Count != 0){
+				selectedPages.openPage(selectedPages.startPage);
+			}
+			database.AppTitle = selectedDatabase.AppTitle;
+			database.databaseObject = selectedDatabase.databaseObject;
+			database.matchingPages = selectedPages;
+			database.OS = selectedDatabase.OS;
+			database.selectedPage = selectedPages.startPage;
+			//appLoaded = true;
+			GetComponent<Home>().enabled = false;
+			GetComponent<MainApp>().enabled = true;
+			GetComponent<Selecter>().enabled = true;
+			GetComponent<ObjectLibrary>().enabled = true;
+			GetComponent<App_Pages>().enabled=true;
+			GetComponent<App_TemplateEditor>().enabled = false;
+			GetComponent<App_Pages>().templateMenuOpened = false;
+			enabled = false;
 		}
 	}
 }

@@ -158,7 +158,7 @@ public class ItemVariables : MonoBehaviour {
 		}
 		else{
 			foreach(GameObject buttonObject in Buttons){
-				buttonObject.GetComponent<ItemVariables>().selected=false;
+			//	buttonObject.GetComponent<ItemVariables>().selected=false;
 			}
 			selected=true;
 			ui.GetComponent<Selecter>().clicked = false;
@@ -178,7 +178,7 @@ public class ItemVariables : MonoBehaviour {
 									ui.GetComponent<AppChangeImage>().itemObject = imageObj;
 								}
 							}
-							movePos = new Vector2(obj.GetComponent<ItemVariables>().position.x/11.25f*100,-obj.GetComponent<ItemVariables>().position.y/20*100);
+							ui.GetComponent<AppChangeImage>().movePos = new Vector2(obj.GetComponent<ItemVariables>().position.x/11.25f*100,-obj.GetComponent<ItemVariables>().position.y/20*100);
 						}
 					}
 					ui.GetComponent<AppChangeImage> ().pageOpened = true;
@@ -193,7 +193,7 @@ public class ItemVariables : MonoBehaviour {
 						if(obj.GetComponent<ItemVariables>().itemName == itemName){
 							ui.GetComponent<AppChangeButton>().item = obj.GetComponent<ItemVariables>();
 							ui.GetComponent<AppChangeButton>().itemObject = obj;
-							movePos = new Vector2(buttonLeft*100,buttonTop*100);
+							ui.GetComponent<AppChangeButton>().movePos = new Vector2(buttonLeft*100,buttonTop*100);
 						}
 					}
 					ui.GetComponent<AppChangeButton>().Reset();
@@ -228,6 +228,7 @@ public class ItemVariables : MonoBehaviour {
 							foreach(GameObject buttonObj in GameObject.FindGameObjectsWithTag("Button")){
 								if(buttonObj.GetComponent<ItemVariables>().itemName == itemName){
 									ui.GetComponent<AppChangeButton>().itemObject = buttonObj;
+
 								}
 							}
 							ui.GetComponent<AppChangeButton>().movePos = new Vector2(buttonLeft*100,buttonTop*100);

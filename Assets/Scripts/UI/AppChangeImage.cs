@@ -199,6 +199,7 @@ public class AppChangeImage : MonoBehaviour {
 			if (Input.GetMouseButton (0) && Input.mousePosition.x>(Screen.width*screenOffset) && Input.mousePosition.x<Screen.width*(screenOffset)+screenRes.x) {
 				if (!mouseClick) {
 					mousestart = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
+					movePos = new Vector2(item.position.x/0.1125f,item.position.y/-0.2f);
 					mouseClick = true;
 				} 
 				else if (mouseClick){

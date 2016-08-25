@@ -13,7 +13,7 @@ public class ImagePlayer : MonoBehaviour {
 	private Texture imageZoomBackground;
 	private GameObject ui;
 	public bool opened = false;
-	private Scroller scroller;
+	//private Scroller scroller;
 	private Vector2 touch1Begin;
 	private Vector2 touch1End;
 	private Vector2 touch2Begin;
@@ -45,10 +45,6 @@ public class ImagePlayer : MonoBehaviour {
 				imageZoomBackground = tex;
 			}
 		}
-		GameObject scroll = GameObject.FindGameObjectWithTag ("Scroller");
-		if (scroll != null) {
-			scroller = scroll.GetComponent<Scroller> ();
-		}
 	}
 
 	public void openImage(Texture[] imgs, int openNumber){
@@ -60,9 +56,8 @@ public class ImagePlayer : MonoBehaviour {
 	}
 
 	public void closeImage(){
-		scroller = GameObject.FindGameObjectWithTag ("Scroller").GetComponent<Scroller>();
-		if (scroller.length>0) {
-			scroller.on = true;
+		if (GameObject.FindGameObjectWithTag ("Scroller") != null) {
+			GameObject.FindGameObjectWithTag ("Scroller").GetComponent<Scroller> ().CheckUse();
 		}
 		opened = false;
 	}

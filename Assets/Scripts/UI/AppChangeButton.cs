@@ -44,11 +44,9 @@ public class AppChangeButton : MonoBehaviour {
 	private Texture selectedImage;
 	private Vector3 scaleOffset;
 	private Vector2 screenRes;
-	//private ImagePlayer imagePlayer;
 
 
 	void Start(){
-		//imagePlayer = GameObject.FindGameObjectWithTag ("ImagePlayer").GetComponent<ImagePlayer> ();
 		textStyle = new GUIStyle ();
 		images = GetComponent<Images> ();
 		data = GetComponent<Database> ();
@@ -84,7 +82,7 @@ public class AppChangeButton : MonoBehaviour {
 			} else {
 				usingTex = notVisibleTex;
 			}
-			activeGameObject = itemObject.GetComponent<ItemVariables>();
+			activeGameObject = GameObject.Find (buttonName + "(Clone)").GetComponent<ItemVariables> ();
 			activeGameObject.buttonVisable = visible;
 			if (item.buttonTexture != null) {
 				imageString = item.buttonTexture.name;
@@ -140,86 +138,20 @@ public class AppChangeButton : MonoBehaviour {
 			}
 			GUI.color = Color.clear;
 			if (GUI.Button (new Rect (Screen.width * (0.28f+0.6582f), Screen.height * 0.11f, Screen.width * 0.058f, Screen.height * 0.1f), "")) {
-				foreach(GameObject page in data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().objects){
-					if(page.GetComponent<ItemVariables>().itemName==item.itemName){
-						if(!gameObject.GetComponent<App_TemplateEditor>().enabled){
-							data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().objects.Remove(page);
-							break;
-						}
-					}
-				}
-				foreach(GameObject page in data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().templateObjects){
-					if(page.GetComponent<ItemVariables>().itemName==item.itemName){
-						if(gameObject.GetComponent<App_TemplateEditor>().enabled){
-							data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().templateObjects.Remove(page);
-							
-							break;
-						}
-					}
-				}
-				foreach(GameObject image in GameObject.FindGameObjectsWithTag("Button")){
-					if(image.GetComponent<ItemVariables>().itemName == item.itemName){
-						Destroy(image);
-					}
-				}
-				GetComponent<ObjectLibrary>().enabled = true;
-				enabled = false;
+				removeObject();
 			}
 			if (GUI.Button (new Rect (Screen.width * (0.06f+0.6582f), Screen.height * 0.87f, Screen.width * 0.23f, Screen.height * 0.1f), "")) {
-				if (float.TryParse (posXString, out posX) == true &&
-					float.TryParse (posYString, out posY) == true &&
-					float.TryParse (scaleXString, out scaleX) == true &&
-					float.TryParse (scaleYString, out scaleY) == true &&
-				    int.TryParse(toPageString, out toPage) == true) {
-					activeGameObject = itemObject.GetComponent<ItemVariables>();
-					foreach(Texture image in images.images){
-						if(image.name == imageString){
-							item.buttonTexture = image;
-							activeGameObject.buttonTexture = image;
-						}
-					}
-					posX = float.Parse (posXString);
-					posY = float.Parse (posYString);
-					scaleX = float.Parse (scaleXString);
-					scaleY = float.Parse (scaleYString);
-					toPage = int.Parse(toPageString);
-					item.itemName = buttonName;
-					item.gameObject.name = buttonName;
-					item.name = buttonName;
-					item.buttonLeft = posX / 100;
-					item.buttonTop = posY / 100;
-					item.buttonWidth = scaleX / 100;
-					item.buttonHeight = scaleY / 100;
-					item.buttonGoesToPage = toPage-1;
-					item.buttonVisable = visible;
-					activeGameObject.itemName = buttonName;
-					activeGameObject.gameObject.name = buttonName+"(Clone)";
-					activeGameObject.buttonLeft = posX / 100;
-					activeGameObject.buttonTopStart = posY / 100;
-					activeGameObject.buttonTop = posY / 100;
-					activeGameObject.buttonWidth = scaleX / 100;
-					activeGameObject.buttonHeight = scaleY / 100;
-					activeGameObject.buttonGoesToPage = toPage-1;
-					activeGameObject.buttonVisable = visible;
-					itemObject.gameObject.name = buttonName;
-					activeGameObject.GetComponent<ItemVariables>().selected = false;
-					Reset();
-					GetComponent<ObjectLibrary>().enabled = true;
-					enabled = false;
-				}
+				applyChanges();
 			}
 		}
 	}
 
 	void moveButton(){
-
 		if (Event.current.shift) {
-			Debug.Log ("1");
 			if (Input.GetMouseButton (0) && Input.mousePosition.x>(Screen.width*screenOffset) && Input.mousePosition.x<Screen.width*(screenOffset)+screenRes.x) {
-				Debug.Log ("2");
 				if (!mouseClick) {
-					Debug.Log ("3");
 					mousestart = new Vector2(Input.mousePosition.x,Input.mousePosition.y);
+					//movePos = new Vector2(item.buttonLeft,item.buttonTopStart);
 					mouseClick = true;
 				}
 				else if(mouseClick){
@@ -233,9 +165,9 @@ public class AppChangeButton : MonoBehaviour {
 					item.buttonTop = newPos.y/100;
 					item.buttonTopStart = newPos.y/100;
 					item.buttonLeft = newPos.x/100;
-					itemObject.GetComponent<ItemVariables>().buttonTop = newPos.y/100;
-					itemObject.GetComponent<ItemVariables>().buttonTopStart = newPos.y/100;
-					itemObject.GetComponent<ItemVariables>().buttonLeft = newPos.x/100;
+					activeGameObject.GetComponent<ItemVariables>().buttonTop = newPos.y/100;
+					activeGameObject.GetComponent<ItemVariables>().buttonTopStart = newPos.y/100;
+					activeGameObject.GetComponent<ItemVariables>().buttonLeft = newPos.x/100;
 				}
 			}
 			if(Input.GetMouseButtonUp(0) && mouseClick){
@@ -245,12 +177,83 @@ public class AppChangeButton : MonoBehaviour {
 				item.buttonTop = newPos.y/100;
 				item.buttonTopStart = newPos.y/100;
 				item.buttonLeft = newPos.x/100;
-				itemObject.GetComponent<ItemVariables>().buttonTop = newPos.y/100;
-				itemObject.GetComponent<ItemVariables>().buttonTopStart = newPos.y/100;
-				itemObject.GetComponent<ItemVariables>().buttonLeft = newPos.x/100;
+				activeGameObject.GetComponent<ItemVariables>().buttonTop = newPos.y/100;
+				activeGameObject.GetComponent<ItemVariables>().buttonTopStart = newPos.y/100;
+				activeGameObject.GetComponent<ItemVariables>().buttonLeft = newPos.x/100;
 			}
 		}
-		Debug.Log ("0");
-		GUI.DrawTexture(new Rect ((Screen.width * screenOffset) + (screenRes.x*item.buttonLeft), screenRes.y*item.buttonTop, screenRes.x*item.buttonWidth, screenRes.y*item.buttonHeight),selectedImage,ScaleMode.StretchToFill);
+		GUI.DrawTexture(new Rect ((Screen.width * screenOffset) + (screenRes.x*activeGameObject.GetComponent<ItemVariables>().buttonLeft), 
+		                          screenRes.y*activeGameObject.GetComponent<ItemVariables>().buttonTop, 
+		                          screenRes.x*activeGameObject.GetComponent<ItemVariables>().buttonWidth, 
+		                          screenRes.y*activeGameObject.GetComponent<ItemVariables>().buttonHeight),selectedImage,ScaleMode.StretchToFill);
+	}
+
+	void applyChanges(){
+		if (float.TryParse (posXString, out posX) == true &&
+		    float.TryParse (posYString, out posY) == true &&
+		    float.TryParse (scaleXString, out scaleX) == true &&
+		    float.TryParse (scaleYString, out scaleY) == true &&
+		    int.TryParse(toPageString, out toPage) == true) {
+			foreach(Texture image in images.images){
+				if(image.name == imageString){
+					item.buttonTexture = image;
+					activeGameObject.buttonTexture = image;
+				}
+			}
+			posX = float.Parse (posXString);
+			posY = float.Parse (posYString);
+			scaleX = float.Parse (scaleXString);
+			scaleY = float.Parse (scaleYString);
+			toPage = int.Parse(toPageString);
+			item.itemName = buttonName;
+			item.gameObject.name = buttonName;
+			item.name = buttonName;
+			item.buttonLeft = posX / 100;
+			item.buttonTop = posY / 100;
+			item.buttonWidth = scaleX / 100;
+			item.buttonHeight = scaleY / 100;
+			item.buttonGoesToPage = toPage-1;
+			item.buttonVisable = visible;
+			activeGameObject.itemName = buttonName;
+			activeGameObject.gameObject.name = buttonName+"(Clone)";
+			activeGameObject.buttonLeft = posX / 100;
+			activeGameObject.buttonTopStart = posY / 100;
+			activeGameObject.buttonTop = posY / 100;
+			activeGameObject.buttonWidth = scaleX / 100;
+			activeGameObject.buttonHeight = scaleY / 100;
+			activeGameObject.buttonGoesToPage = toPage-1;
+			activeGameObject.buttonVisable = visible;
+			activeGameObject.GetComponent<ItemVariables>().selected = false;
+			data.matchingPages.closePage(data.selectedPage);
+			data.matchingPages.PageArray[data.selectedPage].OpenPage();
+			Reset();
+			GetComponent<ObjectLibrary>().enabled = true;
+			enabled = false;
+		}
+	}
+
+	void removeObject(){
+		if (item.templateItem) {
+			foreach (GameObject obj in data.matchingPages.templateObjects) {
+				if (obj.GetComponent<ItemVariables> ().itemName == item.itemName) {
+					data.matchingPages.templateObjects.Remove (obj);
+					data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().templateObjects.Remove(obj);
+					break;
+				}
+			}
+		}
+		foreach (GameObject obj in data.matchingPages.PageArray[data.selectedPage].GetComponent<PageTemplate>().objects) {
+			if (obj.GetComponent<ItemVariables> ().itemName == item.itemName) {
+				data.matchingPages.PageArray [data.selectedPage].GetComponent<PageTemplate> ().objects.Remove (obj);
+				break;
+			}
+		}
+		foreach (GameObject image in GameObject.FindGameObjectsWithTag("Button")) {
+			if (image.GetComponent<ItemVariables> ().itemName == item.itemName) {
+				Destroy (image);
+			}
+		}
+		GetComponent<ObjectLibrary>().enabled = true;
+		enabled = false;
 	}
 }

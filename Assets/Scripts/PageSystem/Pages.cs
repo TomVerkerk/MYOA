@@ -12,14 +12,7 @@ public class Pages : MonoBehaviour {
 	public List<PageTemplate> PageArray;
 
 	public void openPage (int pageNumber) {
-		if (GameObject.FindGameObjectWithTag ("ImagePlayer") == null) {
-			Instantiate (Resources.Load ("ImagePlayer") as GameObject);
-		}
-		if (PageArray [pageNumber].GetComponent<PageTemplate>().template) {
-			PageArray [pageNumber].templateObjects = templateObjects;
-		} else {
-			PageArray[pageNumber].templateObjects.Clear();
-		}
+		PageArray [pageNumber].templateObjects = templateObjects;
 		PageArray [pageNumber].OpenPage ();
 	}
 

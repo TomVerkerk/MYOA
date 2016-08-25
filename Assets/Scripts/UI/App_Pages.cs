@@ -65,19 +65,18 @@ public class App_Pages : MonoBehaviour {
 						GetComponent<App_Image>().enabled = false;
 						GetComponent<AppChangeImage>().pageOpened = true;
 						GetComponent<App_Image>().pageOpened = true;
-						GameObject[] Buttons = GameObject.FindGameObjectsWithTag("Button");
+					/*	GameObject[] Buttons = GameObject.FindGameObjectsWithTag("Button");
 						foreach(GameObject buttonObject in Buttons){
 							if(buttonObject.gameObject!=null){
 								Destroy(buttonObject);
 							}
-						}
-						if(GameObject.FindGameObjectWithTag("Scroller")!=null){
-							GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().Reset();
-							Destroy(GameObject.FindGameObjectWithTag("Scroller"));
-						}
+						}*/
+						if(GameObject.FindGameObjectWithTag("ImagePlayer")!=null){
 						GameObject.FindGameObjectWithTag("ImagePlayer").GetComponent<ImagePlayer>().closeImage();
+						}
 						pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
 						if(templateMenuOpened){
+							//not good^
 							pages.PageArray[page.index].templateOnly = true;
 						}
 						else{
@@ -85,9 +84,8 @@ public class App_Pages : MonoBehaviour {
 						}
 						data.selectedPage = page.index;
 						GetComponent<SelectionGatherer>().enabled = false;
-						GetComponent<AppChangeImage>().enabled = false;
-						GetComponent<AppChangeButton>().enabled = false;
 						GetComponent<ObjectLibrary>().enabled = true;
+						pages.closePage(data.selectedPage);
 						pages.openPage(page.index);
 					}
 					GUI.TextArea(new Rect (Screen.width * (0.1648f - (page.pageName.Length * 0.0052f)), Screen.height * (buttonOffset + (0.07f * (buttonCount))), Screen.width * 0.23f, Screen.height * 0.05f), page.pageName, style);

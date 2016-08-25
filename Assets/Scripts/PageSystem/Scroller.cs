@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Scroller : MonoBehaviour {
 
-	public bool on = true;
+	public bool on = false;
 	public List<GameObject> attached;
 	public List<GameObject> menubuttons;
 	public float length;
@@ -40,6 +40,9 @@ public class Scroller : MonoBehaviour {
 		screenVector = Vector2.zero;
 		currentPos = Vector2.zero;
 		testScroll = Vector2.zero;
+		scrollTest = 0;
+		scrollSpeed = 4;
+		length = 0;
 		foreach (GameObject attachedObject in attached) {
 			if(attachedObject!=null){
 				item = attachedObject.GetComponent<ItemVariables> ();
@@ -58,7 +61,7 @@ public class Scroller : MonoBehaviour {
 				if (variables != null) {
 					if (variables.image) {
 						if (variables.scale.y > 0) {
-							if ((variables.position.y - variables.scale.y) < -20) {
+							if ((variables.position.y - variables.scale.y/2) < -20) {
 								if (-(variables.position.y - variables.scale.y) > length + 20) {
 									length = -(variables.position.y - variables.scale.y) - 20;
 								}
@@ -66,7 +69,7 @@ public class Scroller : MonoBehaviour {
 						} else {
 							if (variables.position.y < -20) {
 								if (-variables.position.y > length + 20) {
-									length = (-variables.position.y) - 20;
+									length = -variables.position.y - 20;
 								}
 							}
 						}
@@ -89,7 +92,6 @@ public class Scroller : MonoBehaviour {
 				}
 			}
 		}
-//		Debug.Log ("" + length);
 		if (length == 0) {
 			Reset ();
 			on = false;

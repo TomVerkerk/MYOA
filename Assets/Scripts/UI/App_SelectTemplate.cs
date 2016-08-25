@@ -62,7 +62,6 @@ public class App_SelectTemplate : MonoBehaviour {
 					GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>().PageArray[0].templateOnly = false;
 					GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>().openPage(0);
 					GetComponent<Database>().selectedPage = 0;
-					GetComponent<Load_App>().appLoaded = true;
 					enabled = false;
 					GetComponent<MainApp>().enabled = true;
 					GetComponent<ObjectLibrary>().enabled = true;

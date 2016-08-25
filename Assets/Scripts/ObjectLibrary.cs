@@ -63,32 +63,7 @@ public class ObjectLibrary : MonoBehaviour {
 					buttonOffset.x=(count%3)*0.11f;
 					buttonOffset.y=(Mathf.Floor(count/3))*0.2f;
 					if(GUI.Button(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.25f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),buttonobj.GetComponent<ItemVariables>().buttonTexture,style)){
-						GameObject prefab = Instantiate(buttonobj) as GameObject;
-						buttonobj.GetComponent<ItemVariables>().itemName = buttonobj.GetComponent<ItemVariables>().itemName+GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>().PageArray[data.selectedPage].objects.Count.ToString();
-						GameObject save = PrefabUtility.CreatePrefab("Assets/Elements/"+data.AppTitle+"/"+buttonobj.GetComponent<ItemVariables>().itemName+".prefab",buttonobj);
-						data.databaseObject.GetComponent<Pages>().PageArray[data.selectedPage].objects.Add(save);
-						if(GameObject.FindGameObjectWithTag("Scroller")!=null){
-							GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().attached.Add(prefab);
-						}
-						GameObject[] Buttons = GameObject.FindGameObjectsWithTag("Button");
-						foreach(GameObject buttonObject in Buttons){
-							if(buttonObject.gameObject!=null){
-								Destroy(buttonObject);
-							}
-						}
-						if(GameObject.FindGameObjectWithTag("Scroller")!=null){
-							GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().Reset();
-							Destroy(GameObject.FindGameObjectWithTag("Scroller"));
-						}
-						GameObject.FindGameObjectWithTag("ImagePlayer").GetComponent<ImagePlayer>().closeImage();
-						pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
-						if(GetComponent<App_Pages>().templateMenuOpened){
-							pages.PageArray[data.selectedPage].templateOnly = true;
-						}
-						else{
-							pages.PageArray[data.selectedPage].templateOnly = false;
-						}
-						pages.openPage(data.selectedPage);
+						CreateObject(buttonobj);
 					}
 					GUI.DrawTexture(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.25f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),frame);
 					count++;
@@ -99,32 +74,7 @@ public class ObjectLibrary : MonoBehaviour {
 					buttonOffset.x=(count%3)*0.11f;
 					buttonOffset.y=(Mathf.Floor(count/3))*0.2f;
 					if(GUI.Button(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.25f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),buttonobj.GetComponent<ItemVariables>().imageMaterial,style)){
-						GameObject prefab = Instantiate(buttonobj) as GameObject;
-						buttonobj.GetComponent<ItemVariables>().itemName = buttonobj.GetComponent<ItemVariables>().itemName+GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>().PageArray[data.selectedPage].objects.Count.ToString();
-						GameObject save = PrefabUtility.CreatePrefab("Assets/Elements/"+data.AppTitle+"/"+buttonobj.GetComponent<ItemVariables>().itemName+".prefab",buttonobj);
-						data.databaseObject.GetComponent<Pages>().PageArray[data.selectedPage].objects.Add(save);
-						if(GameObject.FindGameObjectWithTag("Scroller")!=null){
-							GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().attached.Add(prefab);
-						}
-						GameObject[] Buttons = GameObject.FindGameObjectsWithTag("Button");
-						foreach(GameObject buttonObject in Buttons){
-							if(buttonObject.gameObject!=null){
-								Destroy(buttonObject);
-							}
-						}
-						if(GameObject.FindGameObjectWithTag("Scroller")!=null){
-							GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().Reset();
-							Destroy(GameObject.FindGameObjectWithTag("Scroller"));
-						}
-						GameObject.FindGameObjectWithTag("ImagePlayer").GetComponent<ImagePlayer>().closeImage();
-						pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
-						if(GetComponent<App_Pages>().templateMenuOpened){
-							pages.PageArray[data.selectedPage].templateOnly = true;
-						}
-						else{
-							pages.PageArray[data.selectedPage].templateOnly = false;
-						}
-						pages.openPage(data.selectedPage);
+						CreateObject(buttonobj);
 					}
 					GUI.DrawTexture(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.25f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),frame);
 					count++;
@@ -135,39 +85,32 @@ public class ObjectLibrary : MonoBehaviour {
 					buttonOffset.x=(count%3)*0.11f;
 					buttonOffset.y=(Mathf.Floor(count/3))*0.2f;
 					if(GUI.Button(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.25f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),buttonobj.GetComponent<ItemVariables>().imageMaterial,style)){
-						GameObject prefab = Instantiate(buttonobj) as GameObject;
-						buttonobj.GetComponent<ItemVariables>().itemName = buttonobj.GetComponent<ItemVariables>().itemName+GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>().PageArray[data.selectedPage].objects.Count.ToString();
-						GameObject save = PrefabUtility.CreatePrefab("Assets/Elements/"+data.AppTitle+"/"+buttonobj.GetComponent<ItemVariables>().itemName+".prefab",buttonobj);
-						data.databaseObject.GetComponent<Pages>().PageArray[data.selectedPage].objects.Add(save);
-						if(GameObject.FindGameObjectWithTag("Scroller")!=null){
-							GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().attached.Add(prefab);
-						}
-						GameObject[] Buttons = GameObject.FindGameObjectsWithTag("Button");
-						foreach(GameObject buttonObject in Buttons){
-							if(buttonObject.gameObject!=null){
-								Destroy(buttonObject);
-							}
-						}
-						if(GameObject.FindGameObjectWithTag("Scroller")!=null){
-							GameObject.FindGameObjectWithTag("Scroller").GetComponent<Scroller>().Reset();
-							Destroy(GameObject.FindGameObjectWithTag("Scroller"));
-						}
-						GameObject.FindGameObjectWithTag("ImagePlayer").GetComponent<ImagePlayer>().closeImage();
-						pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
-						if(GetComponent<App_Pages>().templateMenuOpened){
-							pages.PageArray[data.selectedPage].templateOnly = true;
-						}
-						else{
-							pages.PageArray[data.selectedPage].templateOnly = false;
-						}
-						pages.openPage(data.selectedPage);
-						Debug.Log("saved");
+						CreateObject(buttonobj);
 					}
 					GUI.DrawTexture(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.25f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),frame);
 					count++;
 				}
 			}
 			count=0;
+		}
+	}
+
+	void CreateObject(GameObject obj){
+		GameObject prefab = Instantiate(obj) as GameObject;
+		obj.GetComponent<ItemVariables>().itemName = obj.GetComponent<ItemVariables>().itemName+GameObject.FindGameObjectWithTag("Pages").GetComponent<Pages>().PageArray[data.selectedPage].objects.Count.ToString();
+		GameObject save = PrefabUtility.CreatePrefab("Assets/Elements/"+data.AppTitle+"/"+obj.GetComponent<ItemVariables>().itemName+".prefab",obj);
+		GameObject.FindGameObjectWithTag("ImagePlayer").GetComponent<ImagePlayer>().closeImage();
+		if(GetComponent<MainApp>().templateOnly){
+			Destroy(GameObject.FindGameObjectWithTag("ImagePlayer"));
+			data.matchingPages.templateObjects.Add(save);
+			data.matchingPages.PageArray[data.selectedPage].templateObjects.Add(save);
+		} else {
+			data.matchingPages.PageArray[data.selectedPage].objects.Add(save);
+		}
+		data.matchingPages.PageArray [data.selectedPage].ClosePage ();
+		data.matchingPages.PageArray [data.selectedPage].GetComponent<PageTemplate> ().OpenPage ();
+		if (GameObject.FindGameObjectWithTag ("ImagePlayer") == null) {
+			Instantiate(Resources.Load ("ImagePlayer") as GameObject);
 		}
 	}
 }

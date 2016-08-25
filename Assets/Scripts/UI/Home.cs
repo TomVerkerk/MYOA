@@ -11,26 +11,6 @@ public class Home : MonoBehaviour {
 	private Images images;
 	private GUIStyle style;
 
-	public void ResetUI(){
-		GetComponent<App_Button> ().enabled = false;
-		GetComponent<App_Buttons> ().enabled = false;
-		GetComponent<App_Image> ().enabled = false;
-		GetComponent<App_Images> ().enabled = false;
-		GetComponent<App_Menu> ().enabled = false;
-		GetComponent<App_NewPage> ().enabled = false;
-		GetComponent<ObjectLibrary> ().enabled = false;
-		GetComponent<App_Pages> ().enabled = false;
-		GetComponent<App_PageSettings> ().enabled = false;
-		GetComponent<App_Templates> ().enabled = false;
-		GetComponent<App_Texts> ().enabled = false;
-		GetComponent<Database> ().enabled = false;
-		GetComponent<Load_App> ().enabled = false;
-		GetComponent<MainApp> ().enabled = false;
-		GetComponent<NewApp> ().enabled = false;
-		GetComponent<NewApp> ().created = false;
-		enabled = true;
-	}
-
 	void Start(){
 		images = gameObject.GetComponent<Images> ();
 		foreach (Texture image in images.images) {
@@ -60,18 +40,48 @@ public class Home : MonoBehaviour {
 		style = new GUIStyle ();
 		ResetUI ();
 	}
-
+	
+	public void ResetUI(){
+		GetComponent<App_Button> ().enabled = false;
+		GetComponent<App_Buttons> ().enabled = false;
+		GetComponent<App_Image> ().enabled = false;
+		GetComponent<App_Images> ().enabled = false;
+		GetComponent<App_Menu> ().enabled = false;
+		GetComponent<App_NewPage> ().enabled = false;
+		GetComponent<ObjectLibrary> ().enabled = false;
+		GetComponent<App_Pages> ().enabled = false;
+		GetComponent<App_PageSettings> ().enabled = false;
+		GetComponent<App_Templates> ().enabled = false;
+		GetComponent<App_Texts> ().enabled = false;
+		GetComponent<Database> ().enabled = false;
+		GetComponent<Load_App> ().enabled = false;
+		GetComponent<MainApp> ().enabled = false;
+		GetComponent<NewApp> ().enabled = false;
+		GetComponent<App_SelectTemplate> ().enabled = false;
+		GetComponent<App_SelectImage> ().enabled = false;
+		GetComponent<AppChangeButton> ().enabled = false;
+		GetComponent<AppChangeImage> ().enabled = false;
+		GetComponent<AppChangeSlider> ().enabled = false;
+		GetComponent<ButtonLibrary> ().enabled = false;
+		GetComponent<Selecter> ().enabled = false;
+		GetComponent<App_TemplateSettings> ().enabled = false;
+		GetComponent<ObjectLibrary> ().enabled = false;
+		GetComponent<App_TemplateEditor> ().enabled = false;
+		enabled = true;
+	}
 
 	void OnGUI(){
 		if (enabled) {
 			GUI.DrawTexture(new Rect(0, 0, Screen.width * 0.3418f, Screen.height),background);
 			if (GUI.Button (new Rect (Screen.width * 0.06f, Screen.height * 0.16f, Screen.width * 0.23f, Screen.height * 0.1f), new_app ,style)) {
-				this.gameObject.GetComponent<Load_App> ().enabled = false;
-				this.gameObject.GetComponent<NewApp>().enabled=true;
+				GetComponent<Load_App> ().enabled = false;
+				GetComponent<Load_App>().Reset();
+				GetComponent<NewApp>().enabled=true;
 			}
 			if (GUI.Button (new Rect (Screen.width * 0.06f, Screen.height * 0.31f, Screen.width * 0.23f, Screen.height * 0.1f), load_app ,style)) {
-				this.gameObject.GetComponent<NewApp> ().enabled = false;
-				this.gameObject.GetComponent<Load_App> ().enabled = true;
+				GetComponent<NewApp> ().enabled = false;
+				GetComponent<Load_App> ().enabled = true;
+				GetComponent<NewApp>().Reset();
 			}
 		}
 	}
