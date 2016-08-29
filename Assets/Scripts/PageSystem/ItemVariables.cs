@@ -4,6 +4,7 @@ using System.Collections;
 public class ItemVariables : MonoBehaviour {
 
 	public string itemName;
+	public string showName;
 	public int currentPage;
 	public Vector3 position;
 	public Vector2 scale;

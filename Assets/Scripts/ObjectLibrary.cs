@@ -61,10 +61,11 @@ public class ObjectLibrary : MonoBehaviour {
 			if(button){
 				foreach(GameObject buttonobj in buttonObjects){
 					buttonOffset.x=(count%3)*0.11f;
-					buttonOffset.y=(Mathf.Floor(count/3))*0.2f;
+					buttonOffset.y=(Mathf.Floor(count/3))*0.22f;
 					if(GUI.Button(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.25f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),buttonobj.GetComponent<ItemVariables>().buttonTexture,style)){
 						CreateObject(buttonobj);
 					}
+					GUI.TextArea(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.36f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),buttonobj.GetComponent<ItemVariables>().showName,style);
 					GUI.DrawTexture(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.25f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),frame);
 					count++;
 				}
@@ -72,10 +73,11 @@ public class ObjectLibrary : MonoBehaviour {
 			else if(image){
 				foreach(GameObject buttonobj in imageObjects){
 					buttonOffset.x=(count%3)*0.11f;
-					buttonOffset.y=(Mathf.Floor(count/3))*0.2f;
+					buttonOffset.y=(Mathf.Floor(count/3))*0.22f;
 					if(GUI.Button(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.25f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),buttonobj.GetComponent<ItemVariables>().imageMaterial,style)){
 						CreateObject(buttonobj);
 					}
+					GUI.TextArea(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.36f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),buttonobj.GetComponent<ItemVariables>().showName,style);
 					GUI.DrawTexture(new Rect(Screen.width*(0.67f+buttonOffset.x),Screen.height*(0.25f+buttonOffset.y),Screen.width*0.1f,Screen.width*0.1f),frame);
 					count++;
 				}
