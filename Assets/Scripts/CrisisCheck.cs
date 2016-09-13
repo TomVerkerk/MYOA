@@ -6,6 +6,7 @@ public class CrisisCheck : MonoBehaviour {
 
 	public bool CCheck;
 	public bool beoordeeling;
+	public bool buttonsVisable;
 	public GameObject[] Check;
 	public GameObject check1;
 	public GameObject check2;
@@ -31,6 +32,14 @@ public class CrisisCheck : MonoBehaviour {
 	private float score;
 	private Pages pages;
 	private bool rated = false;
+	private bool aRated = false;
+	private bool bRated = false;
+	private bool cRated = false;
+	private bool dRated = false;
+	private bool eRated = false;
+	private Vector2 butPos;
+	private Vector2 butScale;
+
 
 	void Start(){
 		foreach (GameObject element in Check) {
@@ -47,140 +56,166 @@ public class CrisisCheck : MonoBehaviour {
 		check5 = GameObject.FindGameObjectWithTag ("check5");
 		check5.gameObject.SetActive (false);
 		aanmelden = GameObject.FindGameObjectWithTag ("aanmelden");
+		button = GameObject.FindGameObjectWithTag ("BeoordeelButton");
+		button.gameObject.renderer.enabled = false;
 
 		if(CCheck){
-
-			aPos = new Vector3 (0, 10f - (19 * 0.29f), -1);
-			bPos = new Vector3 (0, 10.126f - (19 * 0.466f), -1);
-			cPos = new Vector3 (0, 9.99f - (19 * 0.64f), -1);
-			dPos = new Vector3 (0, 10.047f - (19 * 0.773f), -1);
-			ePos = new Vector3 (0, 10.074f - (19 * 0.896f), -1);
+			button.transform.position=new Vector3(3,-9,-1);
+			butScale = new Vector2(1.4f,0.65f);
+			butPos = new Vector2(0.58f,0.918f);
+			aPos = new Vector3 (0, 10f - (19 * 0.3f), -1);
+			bPos = new Vector3 (0, 10.126f - (19 * 0.475f), -1);
+			cPos = new Vector3 (0, 10.2f - (19 * 0.65f), -1);
+			dPos = new Vector3 (0, 10.25f - (19 * 0.78f), -1);
+			ePos = new Vector3 (0, 10.25f - (19 * 0.905f), -1);
 		}
 		if(beoordeeling){
-			button = GameObject.FindGameObjectWithTag ("BeoordeelButton");
-			button.gameObject.renderer.enabled = false;
-			float x = -4.5f;
-			float y = -0;
-			float z = -1;
-			float width = 2.1f;
-			check1.transform.position = new Vector3(/*Screen.width**/x,y,z);
-			check2.transform.position = new Vector3(/*Screen.width*(*/x+(width*1),y,z);
-			check3.transform.position = new Vector3(/*Screen.width*(*/x+(width*2),y,z);
-			check4.transform.position = new Vector3(/*Screen.width*(*/x+(width*3),y,z);
-			check5.transform.position = new Vector3(/*Screen.width*(*/x+(width*4),y,z);
+			button.transform.position=new Vector3(3.28f,-7,-1);
+			butPos = new Vector2(0.61f,0.818f);
+			butScale = new Vector2(2.1f,0.65f);
+			//float x = -4.4f;
+			//float y = -0;
+			//float z = -1;
+			float width = 1.99f;
+			check1.transform.position = new Vector3(-4.08f,0,-1);
+			check2.transform.position = new Vector3(-4.115f+(width*1),0,-1);
+			check3.transform.position = new Vector3(-4.1f+(width*2),0,-1);
+			check4.transform.position = new Vector3(-4.08f+(width*3),0,-1);
+			check5.transform.position = new Vector3(-4.08f+(width*4),0,-1);
 		}
 	}
 
 	// Use this for initialization
 	void OnGUI(){
-		GUI.color = Color.clear;
+		if(!buttonsVisable){
+			GUI.color = Color.clear;
+		}
 		//a
 		if(CCheck){
-			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.25f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.235f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				a = 0;
 				aPos.x=-6+(12*(0.1f+smallButtonWidth/2));
 				check1.gameObject.transform.position = aPos;
 				check1.gameObject.SetActive(true);
+				aRated=true;
 			}
-			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.25f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.235f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				a = 1;
 				aPos.x=-6+(12*(0.1f+smallButtonWidth*1.5f));
 				check1.gameObject.transform.position = aPos;
 				check1.gameObject.SetActive(true);
+				aRated=true;
 			}
-			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.25f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.235f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				a = 2;
 				aPos.x=-6+(12*(0.1f+smallButtonWidth*2.5f));
 				check1.gameObject.transform.position = aPos;
 				check1.gameObject.SetActive(true);
+				aRated=true;
 			}
 
 			//b
-			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.41f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.4f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				b = 0;
 				bPos.x=-6+(12*(0.1f+smallButtonWidth/2));
 				check2.gameObject.transform.position = bPos;
 				check2.gameObject.SetActive(true);
+				bRated=true;
 			}
-			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.41f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.4f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				b = 1;
 				bPos.x=-6+(12*(0.1f+smallButtonWidth*1.5f));
 				check2.gameObject.transform.position = bPos;
 				check2.gameObject.SetActive(true);
+				bRated=true;
 			}
-			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.41f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.4f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				b = 2;
 				bPos.x=-6+(12*(0.1f+smallButtonWidth*2.5f));
 				check2.gameObject.transform.position = bPos;
 				check2.gameObject.SetActive(true);
+				bRated=true;
 			}
 
 			//c
-			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.575f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.56f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				c = 0;
 				cPos.x=-6+(12*(0.1f+smallButtonWidth/2));
 				check3.gameObject.transform.position = cPos;
 				check3.gameObject.SetActive(true);
+				cRated = true;
 			}
-			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.575f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.56f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				c = 1;
 				cPos.x=-6+(12*(0.1f+smallButtonWidth*1.5f));
 				check3.gameObject.transform.position = cPos;
 				check3.gameObject.SetActive(true);
+				cRated = true;
 			}
-			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.575f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.56f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				c = 2;
 				cPos.x=-6+(12*(0.1f+smallButtonWidth*2.5f));
 				check3.gameObject.transform.position = cPos;
 				check3.gameObject.SetActive(true);
+				cRated = true;
 			}
 
 			//d
-			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.705f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.69f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				d = 0;
 				dPos.x=-6+(12*(0.1f+smallButtonWidth/2));
 				check4.gameObject.transform.position = dPos;
 				check4.gameObject.SetActive(true);
+				dRated = true;
 			}
-			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.705f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.69f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				d = 1;
 				dPos.x=-6+(12*(0.1f+smallButtonWidth*1.5f));
 				check4.gameObject.transform.position = dPos;
 				check4.gameObject.SetActive(true);
+				dRated = true;
 			}
-			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.705f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.69f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				d = 2;
 				dPos.x=-6+(12*(0.1f+smallButtonWidth*2.5f));
 				check4.gameObject.transform.position = dPos;
 				check4.gameObject.SetActive(true);
+				dRated = true;
 			}
 
 			//e
-			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.825f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.805f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				e = 0;
 				ePos.x=-6+(12*(0.1f+smallButtonWidth/2));
 				check5.gameObject.transform.position = ePos;
 				check5.gameObject.SetActive(true);
+				eRated = true;
 			}
-			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.825f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.805f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				e = 1;
 				ePos.x=-6+(12*(0.1f+smallButtonWidth*1.5f));
 				check5.gameObject.transform.position = ePos;
 				check5.gameObject.SetActive(true);
+				eRated = true;
 			}
-			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.825f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.805f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				e = 2;
 				ePos.x=-6+(12*(0.1f+smallButtonWidth*2.5f));
 				check5.gameObject.transform.position = ePos;
 				check5.gameObject.SetActive(true);
+				eRated = true;
 			}
 
-			if(GUI.Button(new Rect(Screen.width*0.59f,Screen.height*0.92f,Screen.width*0.32f,Screen.height*0.076f),"")){
-				Next();
+			if(aRated&&bRated&&cRated&&dRated&&eRated){
+				rated = true;
+				button.gameObject.renderer.enabled = true;
 			}
+		/*	if(GUI.Button(new Rect(Screen.width*0.59f,Screen.height*0.92f,Screen.width*0.32f,Screen.height*0.076f),"")){
+				Next();
+			}*/
 		}
 		if(beoordeeling){
-			smallButtonWidth=0.174f;
+			smallButtonWidth=0.176f;
 			smallButtonHeight=0.1f;
 			if(GUI.Button(new Rect(Screen.width*(0.05f),Screen.height*0.45f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
 				check1.SetActive(true);
@@ -242,11 +277,9 @@ public class CrisisCheck : MonoBehaviour {
 				}
 				rated=true;
 			}
-
-			if(rated && GUI.Button(new Rect(Screen.width*0.6f,Screen.height*0.8f,Screen.width*smallButtonWidth*2,Screen.height*smallButtonHeight),"")){
-				Next();
-			}
-
+		}
+		if(rated && GUI.Button(new Rect(Screen.width*butPos.x,Screen.height*butPos.y,Screen.width*smallButtonWidth*butScale.x,Screen.height*smallButtonHeight*butScale.y),"")){
+			Next();
 		}
 	}
 
@@ -262,10 +295,12 @@ public class CrisisCheck : MonoBehaviour {
 		Destroy (check4);
 		Destroy (check5); 
 		Destroy (aanmelden);
+		Debug.Log (button);
+		Destroy(button);
 		pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
 		if(CCheck){
 			score = a + b + c + d;          
-			if (e == 2 || e == 1 && score >= 4 || score >= 6) {
+			if (e > 0 && score >= 2){
 				pages.openPage (8);
 			}
 			else {
@@ -274,7 +309,7 @@ public class CrisisCheck : MonoBehaviour {
 		}
 		Destroy(GameObject.FindGameObjectWithTag("Button"));
 		if(beoordeeling){
-			Destroy(button);
+		//	Destroy(button);
 			//Destroy(GameObject.FindGameObjectWithTag("Button"));
 			//pages.openPage(13);
 			Application.Quit();

@@ -1,8 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
+/*using UnityEngine.WindowsPhone;
+using UnityEngine.Windows;
+using AOT;
+using System;
+using UnityEditor;
+using UnityEditorInternal;
+using Microsoft;*/
 
 public class ItemVariables : MonoBehaviour {
-
+	
 	public int currentPage;
 	public Vector3 position;
 	public Vector2 scale;
@@ -12,8 +23,12 @@ public class ItemVariables : MonoBehaviour {
 	public float scrollSpeed;
 	public bool text;
 	public bool button;
+	public bool buttonVisible;
 	public bool image;
 	public bool site;
+	public bool call;
+	public bool mail;
+	//private MailMessage mail = new MailMessage ();
 	public bool crisischeck;
 	public bool exit;
 	public Material imageMaterial;
@@ -30,23 +45,48 @@ public class ItemVariables : MonoBehaviour {
 	private GameObject[] Buttons;
 	private Vector2 touchBegin;
 	private Vector2 touchEnd;
+	private float startY;
+	//private OpenWebpage page;
+	//private Uri web;
 
 	void Start(){
 		screenRes.x = Screen.width;
 		screenRes.y = Screen.height;
+		if(scrollable){
+			startY = transform.position.y;
+		}
 		pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
 		if (image) {
 			gameObject.renderer.material = imageMaterial;
 		}
+	//	page = this.gameObject.GetComponent<OpenWebpage> ();
 	}
 
 	void OnGUI(){
-		GUI.color = Color.clear;
+		if (!buttonVisible) {
+						GUI.color = Color.clear;
+				}
 		if (button) {
 			if(GUI.Button (new Rect (screenRes.x*buttonLeft, screenRes.y*buttonTop, screenRes.x*buttonWidth, screenRes.y*buttonHeight),"") ){
 				Buttons = GameObject.FindGameObjectsWithTag("Button");
 				if(site){
-				//Application.OpenURL(siteURL);
+					//#if UNITY_ANDROID
+					Application.OpenURL(siteURL);
+				//	#endif
+				//	web = new Uri("www.google.nl");
+				/*	WebScriptObject site = new WebScriptObject();
+					UriBuilder(site);*/
+				/*	WebBrowserTask namewhatevz = new WebBrowserTask();
+					namewhatevz.Uri = new uri("http://google.se", UriKind.Absolute);
+					namewhatevz.Show();*/
+				}
+				else if(call){
+					//#if UNITY_ANDROID
+					Application.OpenURL("tel://"+siteURL);
+					//#endif
+				}
+				else if(mail){
+					Application.OpenURL("mailto:" + siteURL/* + "?subject:" + subject + "&body:" + body*/);
 				}
 				else if(exit){
 					Application.Quit();
@@ -54,7 +94,7 @@ public class ItemVariables : MonoBehaviour {
 				else{
 					pages.openPage (buttonGoesToPage);
 				}
-				if(crisischeck){
+				if(crisischeck && !site){
 					chrisisC = GameObject.FindGameObjectWithTag("CrisisCheck").gameObject.GetComponent<CrisisCheck>();
 					chrisisC.check1.gameObject.SetActive(true);
 					chrisisC.check2.gameObject.SetActive(true);
@@ -67,20 +107,24 @@ public class ItemVariables : MonoBehaviour {
 					Destroy(chrisisC.check4);
 					Destroy(chrisisC.check5);
 					Destroy(chrisisC.aanmelden);
+					Destroy(chrisisC.button);
+		//			GameObject.FindGameObjectWithTag ("BeoordeelButton");
 					GameObject PHolder;
 					PHolder = GameObject.FindGameObjectWithTag("CrisisCheck");
 					Destroy(PHolder);
-					if(chrisisC.beoordeeling){
+			/*		if(chrisisC.beoordeeling){
 						Destroy(GameObject.FindGameObjectWithTag ("BeoordeelButton"));
-					}
+					}*/
 				}
-				foreach(GameObject buttonObject in Buttons){
-					if(buttonObject!=null){
-						Destroy(buttonObject);
+				if(!site && !call && !mail){
+					foreach(GameObject buttonObject in Buttons){
+						if(buttonObject!=null){
+							Destroy(buttonObject);
+						}
 					}
+					button= false;
 				}
 			//	Destroy(this.gameObject);
-				button= false;
 			}
 		}
 	}
@@ -97,10 +141,13 @@ public class ItemVariables : MonoBehaviour {
 				//else if(T.phase == TouchPhase.Stationary)
 			}
 			if(Input.touches.Length == 0){
-				touchEnd/=2;
+				touchEnd/=1.3f;
 			}
-			if(transform.position.y < (length+position.y)&&transform.position.y > position.y||transform.position.y >= (length+position.y)&& touchEnd.y > 0 || transform.position.y <= position.y && touchEnd.y < 0){
+			if(transform.position.y < (length+position.y)&&transform.position.y > position.y||transform.position.y >= (length+position.y)&& touchEnd.y > 0 || transform.position.y <= position.y&& touchEnd.y < 0){
 				transform.position += new Vector3(0,-touchEnd.y*scrollSpeed,0);
+			}
+			if(transform.position.y < startY /*&& Input.touchCount==0*/){
+				transform.position = new Vector3(transform.position.x,startY,transform.position.z);
 			}
 		//	else if(transform.position.y > (length+position.y)&& touchEnd.y > 0 || transform.position.y < position.y && touchEnd.y < 0)
 		}
@@ -119,12 +166,10 @@ public class ItemVariables : MonoBehaviour {
 					Destroy(chrisisC.check4);
 					Destroy(chrisisC.check5);
 					Destroy(chrisisC.aanmelden);
+					Destroy(chrisisC.button);
 					GameObject PHolder;
 					PHolder = GameObject.FindGameObjectWithTag("CrisisCheck");
 					Destroy(PHolder);
-					if(chrisisC.beoordeeling){
-						Destroy(GameObject.FindGameObjectWithTag ("BeoordeelButton"));
-					}
 				}
 				Buttons = GameObject.FindGameObjectsWithTag("Button");
 				foreach(GameObject buttonObject in Buttons){
