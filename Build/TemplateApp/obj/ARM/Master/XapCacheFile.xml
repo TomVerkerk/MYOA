@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<xapCache source="C:\Users\tom\Documents\Parlan\Build\TemplateApp\Bin\ARM\Master\TemplateApp_Master_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="16/03/2015 10:01:14 PM">
   <file source="C:\Users\tom\Documents\Parlan\Build\TemplateApp\obj\ARM\Master\TemplateApp.dll" archivePath="TemplateApp.dll" lastWriteTime="16/03/2015 10:00:55 PM" />
   <file source="C:\Users\tom\Documents\Parlan\Build\TemplateApp\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="26/01/2015 7:33:08 PM" />
@@ -24,4 +25,32 @@
   <file source="C:\Users\tom\Documents\Parlan\Build\Players\ARM\Master\BridgeInterface.dll" archivePath="BridgeInterface.dll" lastWriteTime="26/01/2015 7:48:28 PM" />
   <file source="C:\Users\tom\Documents\Parlan\Build\Players\ARM\Master\UnityPlayer.dll" archivePath="UnityPlayer.dll" lastWriteTime="26/01/2015 8:03:38 PM" />
   <file source="C:\Users\tom\Documents\Parlan\Build\TemplateApp\Bin\ARM\Master\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="16/03/2015 10:01:11 PM" />
+=======
+﻿<xapCache source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Bin\ARM\Master\TemplateApp_Master_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="16/03/2015 10:05:38 PM">
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\obj\ARM\Master\TemplateApp.dll" archivePath="TemplateApp.dll" lastWriteTime="16/03/2015 10:05:32 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="26/01/2015 7:33:08 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="6/01/2015 11:26:26 AM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="6/01/2015 11:26:26 AM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="6/01/2015 11:26:26 AM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="6/01/2015 11:26:26 AM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="6/01/2015 11:26:26 AM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Data\mainData" archivePath="Data\mainData" lastWriteTime="16/03/2015 10:05:22 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Data\managedAssemblies.txt" archivePath="Data\managedAssemblies.txt" lastWriteTime="16/03/2015 10:05:31 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Data\Resources\unity default resources" archivePath="Data\Resources\unity default resources" lastWriteTime="26/01/2015 7:43:48 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Data\Resources\unity_builtin_extra" archivePath="Data\Resources\unity_builtin_extra" lastWriteTime="16/03/2015 10:05:22 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Data\sharedassets0.assets" archivePath="Data\sharedassets0.assets" lastWriteTime="16/03/2015 10:05:22 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Bin\ARM\Master\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="16/03/2015 10:05:35 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Bin\ARM\Master\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="6/01/2015 11:26:26 AM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Bin\ARM\Master\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="6/01/2015 11:26:26 AM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Assembly-CSharp.dll" archivePath="Assembly-CSharp.dll" lastWriteTime="16/03/2015 10:05:30 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\Players\ARM\Master\BridgeInterface.winmd" archivePath="BridgeInterface.winmd" lastWriteTime="26/01/2015 7:48:28 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\UnityEngine.dll" archivePath="UnityEngine.dll" lastWriteTime="16/03/2015 10:05:30 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\UnityEngine.UI.dll" archivePath="UnityEngine.UI.dll" lastWriteTime="16/03/2015 10:05:30 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\Players\ARM\Master\UnityPlayer.winmd" archivePath="UnityPlayer.winmd" lastWriteTime="26/01/2015 8:03:22 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\Players\ARM\Master\WinRTBridge.dll" archivePath="WinRTBridge.dll" lastWriteTime="26/01/2015 7:48:30 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\WinRTLegacy.dll" archivePath="WinRTLegacy.dll" lastWriteTime="16/03/2015 10:05:31 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\Players\ARM\Master\BridgeInterface.dll" archivePath="BridgeInterface.dll" lastWriteTime="26/01/2015 7:48:28 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\Players\ARM\Master\UnityPlayer.dll" archivePath="UnityPlayer.dll" lastWriteTime="26/01/2015 8:03:38 PM" />
+  <file source="C:\Users\tom\Documents\MakeURONAPP\Build\TemplateApp\Bin\ARM\Master\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="16/03/2015 10:05:35 PM" />
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 </xapCache>

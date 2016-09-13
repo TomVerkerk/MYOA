@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 ﻿<xapCache source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Bin\ARM\Master\CrisisApp_Master_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="31/03/2015 5:21:30 PM">
   <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\obj\ARM\Master\CrisisApp.dll" archivePath="CrisisApp.dll" lastWriteTime="31/03/2015 5:21:02 PM" />
+=======
+﻿<xapCache source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Bin\ARM\Master\CrisisApp_Master_ARM.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="9/03/2015 11:08:41 PM">
+  <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\obj\ARM\Master\CrisisApp.dll" archivePath="CrisisApp.dll" lastWriteTime="9/03/2015 11:08:34 PM" />
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
   <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="26/01/2015 7:33:08 PM" />
   <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="6/01/2015 11:26:26 AM" />
   <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="6/01/2015 11:26:26 AM" />
   <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="6/01/2015 11:26:26 AM" />
   <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="6/01/2015 11:26:26 AM" />
   <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="6/01/2015 11:26:26 AM" />
+<<<<<<< HEAD
   <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Data\mainData" archivePath="Data\mainData" lastWriteTime="31/03/2015 5:20:23 PM" />
   <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Data\managedAssemblies.txt" archivePath="Data\managedAssemblies.txt" lastWriteTime="31/03/2015 5:20:41 PM" />
   <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Data\Resources\unity default resources" archivePath="Data\Resources\unity default resources" lastWriteTime="18/02/2015 4:37:56 PM" />
@@ -24,5 +30,24 @@
   <file source="C:\Users\tom\Documents\Parlan\Build\Players\ARM\Master\BridgeInterface.dll" archivePath="BridgeInterface.dll" lastWriteTime="18/02/2015 4:40:52 PM" />
   <file source="C:\Users\tom\Documents\Parlan\Build\Players\ARM\Master\UnityPlayer.dll" archivePath="UnityPlayer.dll" lastWriteTime="18/02/2015 4:48:16 PM" />
   <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="5/02/2015 3:45:32 PM" />
+=======
+  <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Data\mainData" archivePath="Data\mainData" lastWriteTime="9/03/2015 11:08:20 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Data\managedAssemblies.txt" archivePath="Data\managedAssemblies.txt" lastWriteTime="9/03/2015 11:08:31 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Data\Resources\unity default resources" archivePath="Data\Resources\unity default resources" lastWriteTime="26/01/2015 7:43:48 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Data\Resources\unity_builtin_extra" archivePath="Data\Resources\unity_builtin_extra" lastWriteTime="9/03/2015 11:08:21 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Data\sharedassets0.assets" archivePath="Data\sharedassets0.assets" lastWriteTime="9/03/2015 11:08:21 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Bin\ARM\Master\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="4/03/2015 11:48:33 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Bin\ARM\Master\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="9/03/2015 11:03:32 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Bin\ARM\Master\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="6/01/2015 11:26:26 AM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Assembly-CSharp.dll" archivePath="Assembly-CSharp.dll" lastWriteTime="9/03/2015 11:08:30 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\Players\ARM\Master\BridgeInterface.winmd" archivePath="BridgeInterface.winmd" lastWriteTime="26/01/2015 7:48:28 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\UnityEngine.dll" archivePath="UnityEngine.dll" lastWriteTime="9/03/2015 11:08:31 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\UnityEngine.UI.dll" archivePath="UnityEngine.UI.dll" lastWriteTime="9/03/2015 11:08:31 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\Players\ARM\Master\UnityPlayer.winmd" archivePath="UnityPlayer.winmd" lastWriteTime="26/01/2015 8:03:22 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\Players\ARM\Master\WinRTBridge.dll" archivePath="WinRTBridge.dll" lastWriteTime="26/01/2015 7:48:30 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\WinRTLegacy.dll" archivePath="WinRTLegacy.dll" lastWriteTime="9/03/2015 11:08:31 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\Players\ARM\Master\BridgeInterface.dll" archivePath="BridgeInterface.dll" lastWriteTime="26/01/2015 7:48:28 PM" />
+  <file source="C:\Users\tom\Documents\Parlan\Build\Players\ARM\Master\UnityPlayer.dll" archivePath="UnityPlayer.dll" lastWriteTime="26/01/2015 8:03:38 PM" />
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
   <file source="C:\Users\tom\Documents\Parlan\Build\CrisisApp\Bin\ARM\Master\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="4/03/2015 11:48:51 PM" />
 </xapCache>

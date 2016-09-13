@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Username : MonoBehaviour {
 
+
 	public TouchScreenKeyboard keyBoard;
 	public string user;
 	public string pass;
@@ -27,8 +28,12 @@ public class Username : MonoBehaviour {
 		invalidText.fontSize = 20;
 		pages = GameObject.FindGameObjectWithTag ("Pages").GetComponent<Pages> ();
 
+<<<<<<< HEAD:Assets/Scripts/Username.cs
 		keyBoard = new TouchScreenKeyboard ("", TouchScreenKeyboardType.Default, false, false, true, false, "3");
 		keyBoard.active = false;
+=======
+		keyBoard = new TouchScreenKeyboard ("", TouchScreenKeyboardType.PhonePad, false, false, true, false, "3");
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a:Assets/Scripts/Username.cs
 
 		Texts = new GameObject ();
 

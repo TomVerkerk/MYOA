@@ -60,6 +60,7 @@ public class CrisisCheck : MonoBehaviour {
 		button.gameObject.renderer.enabled = false;
 
 		if(CCheck){
+<<<<<<< HEAD
 			button.transform.position=new Vector3(3,-9,-1);
 			butScale = new Vector2(1.4f,0.65f);
 			butPos = new Vector2(0.58f,0.918f);
@@ -82,6 +83,27 @@ public class CrisisCheck : MonoBehaviour {
 			check3.transform.position = new Vector3(-4.1f+(width*2),0,-1);
 			check4.transform.position = new Vector3(-4.08f+(width*3),0,-1);
 			check5.transform.position = new Vector3(-4.08f+(width*4),0,-1);
+=======
+
+			aPos = new Vector3 (0, 10f - (19 * 0.3f), -1);
+			bPos = new Vector3 (0, 10.126f - (19 * 0.475f), -1);
+			cPos = new Vector3 (0, 9.99f - (19 * 0.65f), -1);
+			dPos = new Vector3 (0, 10.047f - (19 * 0.78f), -1);
+			ePos = new Vector3 (0, 10.074f - (19 * 0.905f), -1);
+		}
+		if(beoordeeling){
+			button = GameObject.FindGameObjectWithTag ("BeoordeelButton");
+			button.gameObject.GetComponent<Renderer>().enabled = false;
+			float x = -4.4f;
+			float y = -0;
+			float z = -1;
+			float width = 2.13f;
+			check1.transform.position = new Vector3(/*Screen.width**/x+0.04f,y,z);
+			check2.transform.position = new Vector3(/*Screen.width*(*/x-0.04f+(width*1),y,z);
+			check3.transform.position = new Vector3(/*Screen.width*(*/x+0.01f+(width*2),y,z);
+			check4.transform.position = new Vector3(/*Screen.width*(*/x+(width*3),y,z);
+			check5.transform.position = new Vector3(/*Screen.width*(*/x+(width*4),y,z);
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 		}
 	}
 
@@ -92,21 +114,33 @@ public class CrisisCheck : MonoBehaviour {
 		}
 		//a
 		if(CCheck){
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.235f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.26f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				a = 0;
 				aPos.x=-6+(12*(0.1f+smallButtonWidth/2));
 				check1.gameObject.transform.position = aPos;
 				check1.gameObject.SetActive(true);
 				aRated=true;
 			}
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.235f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.26f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				a = 1;
 				aPos.x=-6+(12*(0.1f+smallButtonWidth*1.5f));
 				check1.gameObject.transform.position = aPos;
 				check1.gameObject.SetActive(true);
 				aRated=true;
 			}
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.235f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.26f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				a = 2;
 				aPos.x=-6+(12*(0.1f+smallButtonWidth*2.5f));
 				check1.gameObject.transform.position = aPos;
@@ -115,21 +149,33 @@ public class CrisisCheck : MonoBehaviour {
 			}
 
 			//b
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.4f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.428f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				b = 0;
 				bPos.x=-6+(12*(0.1f+smallButtonWidth/2));
 				check2.gameObject.transform.position = bPos;
 				check2.gameObject.SetActive(true);
 				bRated=true;
 			}
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.4f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.428f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				b = 1;
 				bPos.x=-6+(12*(0.1f+smallButtonWidth*1.5f));
 				check2.gameObject.transform.position = bPos;
 				check2.gameObject.SetActive(true);
 				bRated=true;
 			}
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.4f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.428f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				b = 2;
 				bPos.x=-6+(12*(0.1f+smallButtonWidth*2.5f));
 				check2.gameObject.transform.position = bPos;
@@ -138,21 +184,33 @@ public class CrisisCheck : MonoBehaviour {
 			}
 
 			//c
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.56f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.59f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				c = 0;
 				cPos.x=-6+(12*(0.1f+smallButtonWidth/2));
 				check3.gameObject.transform.position = cPos;
 				check3.gameObject.SetActive(true);
 				cRated = true;
 			}
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.56f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.595f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				c = 1;
 				cPos.x=-6+(12*(0.1f+smallButtonWidth*1.5f));
 				check3.gameObject.transform.position = cPos;
 				check3.gameObject.SetActive(true);
 				cRated = true;
 			}
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.56f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.595f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				c = 2;
 				cPos.x=-6+(12*(0.1f+smallButtonWidth*2.5f));
 				check3.gameObject.transform.position = cPos;
@@ -161,21 +219,33 @@ public class CrisisCheck : MonoBehaviour {
 			}
 
 			//d
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.69f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.72f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				d = 0;
 				dPos.x=-6+(12*(0.1f+smallButtonWidth/2));
 				check4.gameObject.transform.position = dPos;
 				check4.gameObject.SetActive(true);
 				dRated = true;
 			}
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.69f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.72f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				d = 1;
 				dPos.x=-6+(12*(0.1f+smallButtonWidth*1.5f));
 				check4.gameObject.transform.position = dPos;
 				check4.gameObject.SetActive(true);
 				dRated = true;
 			}
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.69f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.72f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				d = 2;
 				dPos.x=-6+(12*(0.1f+smallButtonWidth*2.5f));
 				check4.gameObject.transform.position = dPos;
@@ -184,21 +254,33 @@ public class CrisisCheck : MonoBehaviour {
 			}
 
 			//e
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.805f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*0.09f,Screen.height*0.84f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				e = 0;
 				ePos.x=-6+(12*(0.1f+smallButtonWidth/2));
 				check5.gameObject.transform.position = ePos;
 				check5.gameObject.SetActive(true);
 				eRated = true;
 			}
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.805f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth),Screen.height*0.84f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				e = 1;
 				ePos.x=-6+(12*(0.1f+smallButtonWidth*1.5f));
 				check5.gameObject.transform.position = ePos;
 				check5.gameObject.SetActive(true);
 				eRated = true;
 			}
+<<<<<<< HEAD
 			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.805f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+=======
+			if(GUI.Button(new Rect(Screen.width*(0.09f+smallButtonWidth*2f),Screen.height*0.84f,Screen.width*smallButtonWidth,Screen.height*smallButtonHeight),"")){
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 				e = 2;
 				ePos.x=-6+(12*(0.1f+smallButtonWidth*2.5f));
 				check5.gameObject.transform.position = ePos;
@@ -225,7 +307,7 @@ public class CrisisCheck : MonoBehaviour {
 				check5.SetActive(false);
 				rating=1;
 				if(!rated){
-					button.gameObject.renderer.enabled = true;
+					button.gameObject.GetComponent<Renderer>().enabled = true;
 				}
 				rated=true;
 			}
@@ -237,7 +319,7 @@ public class CrisisCheck : MonoBehaviour {
 				check5.SetActive(false);
 				rating=2;
 				if(!rated){
-					button.gameObject.renderer.enabled = true;
+					button.gameObject.GetComponent<Renderer>().enabled = true;
 				}
 				rated=true;
 			}
@@ -249,7 +331,7 @@ public class CrisisCheck : MonoBehaviour {
 				check5.SetActive(false);
 				rating=3;
 				if(!rated){
-					button.gameObject.renderer.enabled = true;
+					button.gameObject.GetComponent<Renderer>().enabled = true;
 				}
 				rated=true;
 			}
@@ -261,7 +343,7 @@ public class CrisisCheck : MonoBehaviour {
 				check5.SetActive(false);
 				rating=4;
 				if(!rated){
-					button.gameObject.renderer.enabled = true;
+					button.gameObject.GetComponent<Renderer>().enabled = true;
 				}
 				rated=true;
 			}
@@ -273,7 +355,7 @@ public class CrisisCheck : MonoBehaviour {
 				check5.SetActive(true);
 				rating=5;
 				if(!rated){
-					button.gameObject.renderer.enabled = true;
+					button.gameObject.GetComponent<Renderer>().enabled = true;
 				}
 				rated=true;
 			}

@@ -7,7 +7,11 @@ using System.Linq;
 
 public class TextFields : MonoBehaviour {
 
+<<<<<<< HEAD
 	public string name;
+=======
+	//public string name;
+>>>>>>> 52ee4db6d127a5c551eee4a1195f14c62466963a
 	public string placeHolder;
 	public float x;
 	public float y;

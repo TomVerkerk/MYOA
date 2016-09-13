@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\Tamagotchi Rdr\Assets\Scripts\RotateUniverse.cs">
+    <Files>
+      <File FileName="..\Tamagotchi Rdr\Assets\Scripts\DayNight.cs" Line="63" Column="7" />
+      <File FileName="..\Tamagotchi Rdr\Assets\Scripts\BackgroundAnim.cs" Line="16" Column="9" />
+      <File FileName="..\Tamagotchi Rdr\Assets\Scripts\AnimationButtons.cs" Line="1" Column="1" />
+      <File FileName="..\Tamagotchi Rdr\Assets\Scripts\RotateUniverse.cs" Line="10" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
